@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.R;
-import fr.kvaternik.adrien.bookstore.model.BookListModel;
+import fr.kvaternik.adrien.bookstore.mvpconfigurator.BookListMVPConfigurator;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
-import fr.kvaternik.adrien.bookstore.presenter.BookListPresenter;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
 
 /**
@@ -20,6 +19,7 @@ import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
  */
 public class BookListFragment extends BaseFragment implements BookListMVP.RequiredViewOperations {
 
+    private BookListMVPConfigurator mConfigurator;
     private BookListMVP.ProvidedPresenterOperations mPresenter;
 
     @Nullable
@@ -27,7 +27,9 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        createMVP();
+        // create MVP with configurator
+        mConfigurator = new BookListMVPConfigurator();
+        mConfigurator.createMVPWithView(this);
 
         mPresenter.requestBooks();
 
@@ -41,35 +43,18 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
 
     @Override
     public void onDestroy() {
-        destroyMVP();
+        // destroy MVP
+        mConfigurator.destroyMVPWithPresenter(mPresenter);
         super.onDestroy();
+    }
+
+    @Override
+    public void attachPresenter(BookListMVP.ProvidedPresenterOperations presenter) {
+        mPresenter = presenter;
     }
 
     @Override
     public void updateBookList(@NonNull List<BookV0> bookVOs) {
         // TODO : impl
-    }
-
-    /**
-     * Creates the MVP.
-     */
-    private void createMVP() {
-        BookListPresenter presenter = new BookListPresenter();
-
-        mPresenter = presenter;
-        mPresenter.attachView(this);
-
-        BookListMVP.ProvidedModelOperations model = new BookListModel();
-
-        mPresenter.attachModel(model);
-        model.attachPresenter(presenter);
-    }
-
-    /**
-     * Destroys the MVP.
-     */
-    private void destroyMVP() {
-        mPresenter.detachModel();
-        mPresenter.detachView();
     }
 }

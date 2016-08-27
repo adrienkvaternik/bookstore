@@ -8,7 +8,7 @@ public interface CartMVP {
     /**
      * Operations that the view is required to implement so that the presenter can interact with it.
      */
-    interface RequiredViewOperations {
+    interface RequiredViewOperations extends AttachmentMVP.View<ProvidedPresenterOperations> {
 
     }
 

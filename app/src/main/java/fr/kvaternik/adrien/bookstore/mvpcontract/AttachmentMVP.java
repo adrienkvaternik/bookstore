@@ -6,6 +6,18 @@ package fr.kvaternik.adrien.bookstore.mvpcontract;
 public interface AttachmentMVP {
 
     /**
+     * Methods that a view needs to implement to enable attachment/detachment of the presenter.
+     * @param <P> The presenter type.
+     */
+    interface View<P> {
+        /**
+         * Used to attach the presenter to the view.
+         * @param presenter the presenter to attach
+         */
+        void attachPresenter(P presenter);
+    }
+
+    /**
      * Methods that a presenter needs to implement to enable attachment/detachment of the view.
      * @param <V> The view type.
      * @param <M> The model type.
