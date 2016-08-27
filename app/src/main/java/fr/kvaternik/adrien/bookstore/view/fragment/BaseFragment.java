@@ -33,8 +33,8 @@ public abstract class BaseFragment extends Fragment {
      */
     @Override
     public void onDestroyView() {
-        mUnbinder.unbind();
         super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     /**
