@@ -20,7 +20,7 @@ import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
  */
 public class BookListFragment extends BaseFragment implements BookListMVP.RequiredViewOperations {
 
-    private BookListMVP.ProvidedPresenterOperations<BookListMVP.RequiredViewOperations, BookListMVP.ProvidedModelOperations> mPresenter;
+    private BookListMVP.ProvidedPresenterOperations mPresenter;
 
     @Nullable
     @Override
@@ -59,7 +59,7 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
         mPresenter = presenter;
         mPresenter.attachView(this);
 
-        BookListMVP.ProvidedModelOperations<BookListMVP.RequiredPresenterOperations> model = new BookListModel();
+        BookListMVP.ProvidedModelOperations model = new BookListModel();
 
         mPresenter.attachModel(model);
         model.attachPresenter(presenter);

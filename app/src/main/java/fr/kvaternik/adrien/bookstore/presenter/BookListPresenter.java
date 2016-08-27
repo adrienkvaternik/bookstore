@@ -13,8 +13,7 @@ import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
 /**
  * The presenter for the book list.
  */
-public class BookListPresenter implements BookListMVP.ProvidedPresenterOperations<BookListMVP.RequiredViewOperations, BookListMVP.ProvidedModelOperations>,
-        BookListMVP.RequiredPresenterOperations {
+public class BookListPresenter implements BookListMVP.ProvidedPresenterOperations, BookListMVP.RequiredPresenterOperations {
 
     /** Decimal formatter with 2 decimals, used to convert a {@link Book} into a {@link BookV0}, see method {@link #convertBookToBookVO(Book)} */
     private DecimalFormat mDecimalFormat = new DecimalFormat("#.00");

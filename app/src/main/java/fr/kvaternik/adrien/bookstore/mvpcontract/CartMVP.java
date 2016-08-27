@@ -14,10 +14,8 @@ public interface CartMVP {
 
     /**
      * Operations provided by the presenter to the view.
-     * @param <V> The view type.
-     * @param <M> The model type.
      */
-    interface ProvidedPresenterOperations<V,M> extends AttachmentMVP.Presenter<V,M> {
+    interface ProvidedPresenterOperations extends AttachmentMVP.Presenter<RequiredViewOperations,ProvidedModelOperations> {
 
     }
 
@@ -30,9 +28,8 @@ public interface CartMVP {
 
     /**
      * Operations provided by the model to the presenter.
-     * @param <P> The presenter type.
      */
-    interface ProvidedModelOperations<P> extends AttachmentMVP.Model<P> {
+    interface ProvidedModelOperations extends AttachmentMVP.Model<RequiredPresenterOperations> {
 
     }
 }

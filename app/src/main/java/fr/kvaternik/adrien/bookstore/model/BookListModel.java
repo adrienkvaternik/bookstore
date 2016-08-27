@@ -5,7 +5,7 @@ import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 /**
  * The model for the book list.
  */
-public class BookListModel implements BookListMVP.ProvidedModelOperations<BookListMVP.RequiredPresenterOperations> {
+public class BookListModel implements BookListMVP.ProvidedModelOperations {
 
     private BookListMVP.RequiredPresenterOperations mPresenter;
 
