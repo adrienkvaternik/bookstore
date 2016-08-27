@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * The base class for fragments. All fragments must extend from this class.
  */
 public abstract class BaseFragment extends Fragment {
+
+    private Unbinder mUnbinder;
 
     /**
      * Used to bind views with ButterKnife.
@@ -21,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(getViewId(), container, false);
-        ButterKnife.bind(this, rootView);
+        mUnbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -30,8 +33,8 @@ public abstract class BaseFragment extends Fragment {
      */
     @Override
     public void onDestroyView() {
+        mUnbinder.unbind();
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     /**

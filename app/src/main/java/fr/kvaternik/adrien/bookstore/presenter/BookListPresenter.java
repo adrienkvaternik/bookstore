@@ -30,4 +30,9 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
     public void detachModel() {
         mModel = null;
     }
+
+    @Override
+    public void requestBooks() {
+        mModel.getBooks();
+    }
 }

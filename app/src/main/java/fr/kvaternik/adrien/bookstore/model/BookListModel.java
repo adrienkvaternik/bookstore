@@ -13,4 +13,9 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations<BookLi
     public void attachPresenter(BookListMVP.RequiredPresenterOperations presenter) {
         mPresenter = presenter;
     }
+
+    @Override
+    public void getBooks() {
+        // TODO : impl
+    }
 }

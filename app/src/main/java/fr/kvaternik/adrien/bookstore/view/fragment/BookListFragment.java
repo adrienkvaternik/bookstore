@@ -25,6 +25,8 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
 
         createMVP();
 
+        mPresenter.requestBooks();
+
         return view;
     }
 

@@ -18,7 +18,10 @@ public interface BookListMVP {
      * @param <M> The model type.
      */
     interface ProvidedPresenterOperations<V,M> extends AttachmentMVP.Presenter<V,M> {
-
+        /**
+         * Requests the books.
+         */
+        void requestBooks();
     }
 
     /**
@@ -33,6 +36,9 @@ public interface BookListMVP {
      * @param <P> The presenter type.
      */
     interface ProvidedModelOperations<P> extends AttachmentMVP.Model<P> {
-
+        /**
+         * Provides the books.
+         */
+        void getBooks();
     }
 }
