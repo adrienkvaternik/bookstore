@@ -39,4 +39,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
     public int getItemCount() {
         return mBookV0s.size();
     }
+
+    /**
+     * Updates the adapter data and notifies the data change.
+     * @param bookV0s the new book VOs
+     */
+    public void updateData(@NonNull List<BookV0> bookV0s) {
+        mBookV0s = bookV0s;
+        notifyDataSetChanged();
+    }
 }
