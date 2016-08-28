@@ -26,6 +26,7 @@ public class CartMVPConfigurator {
 
         // create model
         CartModel model = new CartModel();
+        // TODO : use real cart repository
         model.setRepository(new FakeCartRepository());
         OfferService service = new OfferService();
         service.setAPIProvider(RetrofitAPIProvider.getInstance());
