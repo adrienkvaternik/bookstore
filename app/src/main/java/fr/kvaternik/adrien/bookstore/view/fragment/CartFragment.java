@@ -18,6 +18,7 @@ import fr.kvaternik.adrien.bookstore.mvpconfigurator.CartMVPConfigurator;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
+import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 import fr.kvaternik.adrien.bookstore.view.adapter.CartAdapter;
 
 /**
@@ -74,5 +75,10 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     public void updateCart(@NonNull CartVO cartVO) {
         mAdapter.updateData(cartVO.getBookV0s());
         mTotalPriceTextView.setText(cartVO.getTotalPrice());
+    }
+
+    @Override
+    public void updateOffer(@NonNull OfferVO offerVO) {
+        // TODO : impl
     }
 }

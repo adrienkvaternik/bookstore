@@ -6,7 +6,7 @@ package fr.kvaternik.adrien.bookstore.model.entity;
 public class MinusOffer extends Offer {
 
     public MinusOffer(double value) {
-        super(value);
+        super(value, UNIT_EUROS);
     }
 
     @Override

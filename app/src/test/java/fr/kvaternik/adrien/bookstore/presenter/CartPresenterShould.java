@@ -3,7 +3,6 @@ package fr.kvaternik.adrien.bookstore.presenter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -11,9 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.model.entity.MinusOffer;
+import fr.kvaternik.adrien.bookstore.model.entity.PercentageOffer;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
+import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 
 import static org.mockito.Mockito.*;
 
@@ -84,5 +86,29 @@ public class CartPresenterShould {
 
         // assertion
         verify(mMockModel).getBestOffer();
+    }
+
+    @Test
+    public void call_its_view_on_offer_euros_presentation() throws Exception {
+        // offer VO creation
+        OfferVO expectedOfferVO = new OfferVO("-20,00 €", "80,00 €");
+
+        // action
+        mPresenter.presentBestOffer(new MinusOffer(20), 80.0);
+
+        // assertion
+        verify(mMockView).updateOffer(expectedOfferVO);
+    }
+
+    @Test
+    public void call_its_view_on_offer_percent_presentation() throws Exception {
+        // offer VO creation
+        OfferVO expectedOfferVO = new OfferVO("-20,00 %", "80,00 €");
+
+        // action
+        mPresenter.presentBestOffer(new PercentageOffer(20), 80.0);
+
+        // assertion
+        verify(mMockView).updateOffer(expectedOfferVO);
     }
 }

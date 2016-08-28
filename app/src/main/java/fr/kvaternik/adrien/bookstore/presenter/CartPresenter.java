@@ -11,6 +11,7 @@ import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
+import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
 
 /**
@@ -18,8 +19,12 @@ import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
  */
 public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartMVP.RequiredPresenterOperations {
 
-    /** Decimal formatter with 2 decimals, in euros, used to convert a {@link Book} into a {@link BookV0}, see method {@link #convertBookToBookVO(Book)} */
-    private DecimalFormat mDecimalFormat = DecimalFormatUtils.decimalFormatEuros();
+    /** Decimal formatter with 2 decimals, in euros */
+    private DecimalFormat mDecimalFormatEuros = DecimalFormatUtils.decimalFormatEuros();
+    /** Decimal formatter with 2 decimals, in euros reduction */
+    private DecimalFormat mDecimalFormatEurosReduction = DecimalFormatUtils.decimalFormatEurosReduction();
+    /** Decimal formatter with 2 decimals, in percent reduction */
+    private DecimalFormat mDecimalFormatPercentReduction = DecimalFormatUtils.decimalFormatPercentReduction();
 
     private CartMVP.RequiredViewOperations mView;
     private CartMVP.ProvidedModelOperations mModel;
@@ -61,12 +66,29 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
             bookV0s.add(convertBookToBookVO(book));
         }
 
-        mView.updateCart(new CartVO(bookV0s, mDecimalFormat.format(totalPrice)));
+        mView.updateCart(new CartVO(bookV0s, mDecimalFormatEuros.format(totalPrice)));
     }
 
     @Override
-    public void presentBestOffer(@NonNull Offer bestOffer) {
-        // TODO : impl
+    public void presentBestOffer(@NonNull Offer bestOffer, double reductedPrice) {
+        int offerUnit = bestOffer.getUnit();
+
+        DecimalFormat decimalFormat;
+        double multiplier;
+        switch (offerUnit) {
+            case Offer.UNIT_EUROS:
+                decimalFormat = mDecimalFormatEurosReduction;
+                multiplier = 1.0;
+                break;
+            case Offer.UNIT_PERCENT:
+                decimalFormat = mDecimalFormatPercentReduction;
+                multiplier = 1.0 / 100.0;
+                break;
+            default:
+                throw new IllegalStateException("Unknown offer unit : " + offerUnit);
+        }
+
+        mView.updateOffer(new OfferVO(decimalFormat.format(bestOffer.getValue() * multiplier), mDecimalFormatEuros.format(reductedPrice)));
     }
 
     @Override
@@ -84,7 +106,7 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
         return new BookV0(
                 book.getIsbn(),
                 book.getTitle(),
-                mDecimalFormat.format(book.getPrice()),
+                mDecimalFormatEuros.format(book.getPrice()),
                 book.getCover()
         );
     }

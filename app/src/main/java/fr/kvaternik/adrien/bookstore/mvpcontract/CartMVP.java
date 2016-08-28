@@ -7,6 +7,7 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
+import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 
 /**
  * The MVP contract for the cart functionality.
@@ -23,6 +24,12 @@ public interface CartMVP {
          * @param cartVO the visual object for the cart
          */
         void updateCart(@NonNull CartVO cartVO);
+
+        /**
+         * Update the offer.
+         * @param offerVO the visual object for the offer
+         */
+        void updateOffer(@NonNull OfferVO offerVO);
     }
 
     /**
@@ -55,8 +62,9 @@ public interface CartMVP {
         /**
          * Presents the best offer.
          * @param bestOffer the best offer
+         * @param reductedPrice the reducted price
          */
-        void presentBestOffer(@NonNull Offer bestOffer);
+        void presentBestOffer(@NonNull Offer bestOffer, double reductedPrice);
 
         /**
          * Present the absence of offer.

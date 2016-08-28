@@ -6,7 +6,7 @@ package fr.kvaternik.adrien.bookstore.model.entity;
 public class PercentageOffer extends Offer {
 
     public PercentageOffer(double value) {
-        super(value);
+        super(value, UNIT_PERCENT);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class SliceOffer extends Offer {
     private double sliceValue;
 
     public SliceOffer(double value, double sliceValue) {
-        super(value);
+        super(value, UNIT_EUROS);
         this.sliceValue = sliceValue;
     }
 

@@ -54,7 +54,7 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
                 double totalPrice = getTotalPriceForBooks(books);
                 Offer bestOffer = mOfferOptimizer.getBestOffer(offers, totalPrice);
                 if (bestOffer != null) {
-                    mPresenter.presentBestOffer(bestOffer);
+                    mPresenter.presentBestOffer(bestOffer, bestOffer.getPriceAfterApplication(totalPrice));
                 } else {
                     mPresenter.presentNoOffer();
                 }
