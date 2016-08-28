@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 
 /**
  * The MVP contract for the book list functionality.
@@ -20,7 +20,7 @@ public interface BookListMVP {
          * Updates the book list.
          * @param bookVOs the list of visual objects for the books
          */
-        void updateBookList(@NonNull List<BookV0> bookVOs);
+        void updateBookList(@NonNull List<BookVO> bookVOs);
     }
 
     /**

@@ -16,7 +16,7 @@ import butterknife.BindView;
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.mvpconfigurator.BookListMVPConfigurator;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.view.adapter.BookListAdapter;
 
 /**
@@ -37,7 +37,7 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
         // setup adapter
-        mAdapter = new BookListAdapter(new ArrayList<BookV0>());
+        mAdapter = new BookListAdapter(new ArrayList<BookVO>());
 
         // setup recyclerview
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -71,7 +71,7 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
     }
 
     @Override
-    public void updateBookList(@NonNull List<BookV0> bookVOs) {
+    public void updateBookList(@NonNull List<BookVO> bookVOs) {
         mAdapter.updateData(bookVOs);
     }
 }

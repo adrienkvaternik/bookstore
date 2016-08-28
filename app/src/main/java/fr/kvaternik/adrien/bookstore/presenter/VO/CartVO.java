@@ -7,16 +7,16 @@ import java.util.List;
  */
 public class CartVO {
 
-    private List<BookV0> bookV0s;
+    private List<BookVO> bookVOs;
     private String totalPrice;
 
-    public CartVO(List<BookV0> bookV0s, String totalPrice) {
-        this.bookV0s = bookV0s;
+    public CartVO(List<BookVO> bookVOs, String totalPrice) {
+        this.bookVOs = bookVOs;
         this.totalPrice = totalPrice;
     }
 
-    public List<BookV0> getBookV0s() {
-        return bookV0s;
+    public List<BookVO> getBookVOs() {
+        return bookVOs;
     }
 
     public String getTotalPrice() {
@@ -30,7 +30,7 @@ public class CartVO {
 
         CartVO cartVO = (CartVO) o;
 
-        if (bookV0s != null ? !bookV0s.equals(cartVO.bookV0s) : cartVO.bookV0s != null)
+        if (bookVOs != null ? !bookVOs.equals(cartVO.bookVOs) : cartVO.bookVOs != null)
             return false;
         return totalPrice != null ? totalPrice.equals(cartVO.totalPrice) : cartVO.totalPrice == null;
 
@@ -38,7 +38,7 @@ public class CartVO {
 
     @Override
     public int hashCode() {
-        int result = bookV0s != null ? bookV0s.hashCode() : 0;
+        int result = bookVOs != null ? bookVOs.hashCode() : 0;
         result = 31 * result + (totalPrice != null ? totalPrice.hashCode() : 0);
         return result;
     }
@@ -46,7 +46,7 @@ public class CartVO {
     @Override
     public String toString() {
         return "CartVO{" +
-                "bookV0s=" + bookV0s +
+                "bookVOs=" + bookVOs +
                 ", totalPrice='" + totalPrice + '\'' +
                 '}';
     }

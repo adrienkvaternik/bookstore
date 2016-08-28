@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.R;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.view.viewholder.CartViewHolder;
 
 /**
@@ -17,10 +17,10 @@ import fr.kvaternik.adrien.bookstore.view.viewholder.CartViewHolder;
  */
 public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
 
-    private List<BookV0> mBookV0s;
+    private List<BookVO> mBookVOs;
 
-    public CartAdapter(@NonNull List<BookV0> bookV0s) {
-        mBookV0s = bookV0s;
+    public CartAdapter(@NonNull List<BookVO> bookVOs) {
+        mBookVOs = bookVOs;
     }
 
     @Override
@@ -31,21 +31,21 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
 
     @Override
     public void onBindViewHolder(CartViewHolder holder, int position) {
-        BookV0 bookV0 = mBookV0s.get(position);
-        holder.bindVO(bookV0);
+        BookVO bookVO = mBookVOs.get(position);
+        holder.bindVO(bookVO);
     }
 
     @Override
     public int getItemCount() {
-        return mBookV0s.size();
+        return mBookVOs.size();
     }
 
     /**
      * Updates the adapter data and notifies the data change.
-     * @param bookV0s the new book VOs
+     * @param bookVOs the new book VOs
      */
-    public void updateData(@NonNull List<BookV0> bookV0s) {
-        mBookV0s = bookV0s;
+    public void updateData(@NonNull List<BookVO> bookVOs) {
+        mBookVOs = bookVOs;
         notifyDataSetChanged();
     }
 }

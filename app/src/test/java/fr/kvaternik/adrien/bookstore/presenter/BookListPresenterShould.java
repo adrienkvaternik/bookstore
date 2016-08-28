@@ -3,7 +3,6 @@ package fr.kvaternik.adrien.bookstore.presenter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 
 import static org.mockito.Mockito.*;
 
@@ -62,9 +61,9 @@ public class BookListPresenterShould {
         books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover));
 
         // expected book VOs list creation
-        List<BookV0> expectedBookVOs = new ArrayList<>();
-        expectedBookVOs.add(new BookV0(firstIsbn, firstTitle, "35,00 €", firstCover));
-        expectedBookVOs.add(new BookV0(secondIsbn, secondTitle, "30,00 €", secondCover));
+        List<BookVO> expectedBookVOs = new ArrayList<>();
+        expectedBookVOs.add(new BookVO(firstIsbn, firstTitle, "35,00 €", firstCover));
+        expectedBookVOs.add(new BookVO(secondIsbn, secondTitle, "30,00 €", secondCover));
 
         // action
         mPresenter.presentBooks(books);

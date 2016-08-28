@@ -13,7 +13,7 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.entity.MinusOffer;
 import fr.kvaternik.adrien.bookstore.model.entity.PercentageOffer;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 
@@ -65,9 +65,9 @@ public class CartPresenterShould {
         books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover));
 
         // book VOs list creation
-        List<BookV0> bookVOs = new ArrayList<>();
-        bookVOs.add(new BookV0(firstIsbn, firstTitle, "35,00 €", firstCover));
-        bookVOs.add(new BookV0(secondIsbn, secondTitle, "30,00 €", secondCover));
+        List<BookVO> bookVOs = new ArrayList<>();
+        bookVOs.add(new BookVO(firstIsbn, firstTitle, "35,00 €", firstCover));
+        bookVOs.add(new BookVO(secondIsbn, secondTitle, "30,00 €", secondCover));
 
         // expected cart VO creation
         CartVO expectedCartVO = new CartVO(bookVOs, "65,00 €");

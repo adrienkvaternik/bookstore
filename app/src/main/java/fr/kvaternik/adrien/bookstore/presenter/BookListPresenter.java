@@ -8,7 +8,7 @@ import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
 
 /**
@@ -16,7 +16,7 @@ import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
  */
 public class BookListPresenter implements BookListMVP.ProvidedPresenterOperations, BookListMVP.RequiredPresenterOperations {
 
-    /** Decimal formatter with 2 decimals, in euros, used to convert a {@link Book} into a {@link BookV0}, see method {@link #convertBookToBookVO(Book)} */
+    /** Decimal formatter with 2 decimals, in euros, used to convert a {@link Book} into a {@link BookVO}, see method {@link #convertBookToBookVO(Book)} */
     private DecimalFormat mDecimalFormat = DecimalFormatUtils.decimalFormatEuros();
 
     private BookListMVP.RequiredViewOperations mView;
@@ -49,12 +49,12 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
 
     @Override
     public void presentBooks(@NonNull List<Book> books) {
-        List<BookV0> bookV0s = new ArrayList<>();
+        List<BookVO> bookVOs = new ArrayList<>();
         for (Book book : books) {
-            bookV0s.add(convertBookToBookVO(book));
+            bookVOs.add(convertBookToBookVO(book));
         }
 
-        mView.updateBookList(bookV0s);
+        mView.updateBookList(bookVOs);
     }
 
     @Override
@@ -63,13 +63,13 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
     }
 
     /**
-     * Converts a {@link Book} into a {@link BookV0}.
+     * Converts a {@link Book} into a {@link BookVO}.
      * @param book the book to convert.
-     * @return The resulting {@link BookV0}.
+     * @return The resulting {@link BookVO}.
      */
     @NonNull
-    private BookV0 convertBookToBookVO(@NonNull Book book) {
-        return new BookV0(
+    private BookVO convertBookToBookVO(@NonNull Book book) {
+        return new BookVO(
                 book.getIsbn(),
                 book.getTitle(),
                 mDecimalFormat.format(book.getPrice()),

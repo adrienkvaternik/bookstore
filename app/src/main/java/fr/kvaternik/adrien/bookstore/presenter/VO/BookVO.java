@@ -3,14 +3,14 @@ package fr.kvaternik.adrien.bookstore.presenter.VO;
 /**
  * The book visual object.
  */
-public class BookV0 {
+public class BookVO {
 
     private String isbn;
     private String title;
     private String price;
     private String cover;
 
-    public BookV0(String isbn, String title, String price, String cover) {
+    public BookVO(String isbn, String title, String price, String cover) {
         this.isbn = isbn;
         this.title = title;
         this.price = price;
@@ -35,7 +35,7 @@ public class BookV0 {
 
     @Override
     public String toString() {
-        return "BookV0{" +
+        return "BookVO{" +
                 "isbn='" + isbn + '\'' +
                 ", title='" + title + '\'' +
                 ", price='" + price + '\'' +
@@ -48,12 +48,12 @@ public class BookV0 {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookV0 bookV0 = (BookV0) o;
+        BookVO bookVO = (BookVO) o;
 
-        if (isbn != null ? !isbn.equals(bookV0.isbn) : bookV0.isbn != null) return false;
-        if (title != null ? !title.equals(bookV0.title) : bookV0.title != null) return false;
-        if (price != null ? !price.equals(bookV0.price) : bookV0.price != null) return false;
-        return cover != null ? cover.equals(bookV0.cover) : bookV0.cover == null;
+        if (isbn != null ? !isbn.equals(bookVO.isbn) : bookVO.isbn != null) return false;
+        if (title != null ? !title.equals(bookVO.title) : bookVO.title != null) return false;
+        if (price != null ? !price.equals(bookVO.price) : bookVO.price != null) return false;
+        return cover != null ? cover.equals(bookVO.cover) : bookVO.cover == null;
 
     }
 

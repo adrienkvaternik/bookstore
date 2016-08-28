@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.R;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.view.viewholder.BookListViewHolder;
 
 /**
@@ -18,10 +18,10 @@ import fr.kvaternik.adrien.bookstore.view.viewholder.BookListViewHolder;
  */
 public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder> {
 
-    private List<BookV0> mBookV0s = new ArrayList<>();
+    private List<BookVO> mBookVOs = new ArrayList<>();
 
-    public BookListAdapter(@NonNull List<BookV0> bookV0s) {
-        mBookV0s = bookV0s;
+    public BookListAdapter(@NonNull List<BookVO> bookVOs) {
+        mBookVOs = bookVOs;
     }
 
     @Override
@@ -32,21 +32,21 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder> {
 
     @Override
     public void onBindViewHolder(BookListViewHolder holder, int position) {
-        BookV0 bookV0 = mBookV0s.get(position);
-        holder.bindVO(bookV0);
+        BookVO bookVO = mBookVOs.get(position);
+        holder.bindVO(bookVO);
     }
 
     @Override
     public int getItemCount() {
-        return mBookV0s.size();
+        return mBookVOs.size();
     }
 
     /**
      * Updates the adapter data and notifies the data change.
-     * @param bookV0s the new book VOs
+     * @param bookVOs the new book VOs
      */
-    public void updateData(@NonNull List<BookV0> bookV0s) {
-        mBookV0s = bookV0s;
+    public void updateData(@NonNull List<BookVO> bookVOs) {
+        mBookVOs = bookVOs;
         notifyDataSetChanged();
     }
 }

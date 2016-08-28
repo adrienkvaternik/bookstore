@@ -16,7 +16,7 @@ import butterknife.BindView;
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.mvpconfigurator.CartMVPConfigurator;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 import fr.kvaternik.adrien.bookstore.view.adapter.CartAdapter;
@@ -42,7 +42,7 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
         // setup adapter
-        mAdapter = new CartAdapter(new ArrayList<BookV0>());
+        mAdapter = new CartAdapter(new ArrayList<BookVO>());
 
         // setup recyclerview
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -73,7 +73,7 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
 
     @Override
     public void updateCart(@NonNull CartVO cartVO) {
-        mAdapter.updateData(cartVO.getBookV0s());
+        mAdapter.updateData(cartVO.getBookVOs());
         mTotalPriceTextView.setText(cartVO.getTotalPrice());
     }
 

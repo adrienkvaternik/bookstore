@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import fr.kvaternik.adrien.bookstore.R;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 
 /**
  * The view holder for the cart.
@@ -32,13 +32,13 @@ public class CartViewHolder extends BaseViewHolder {
 
     /**
      * Binds the book VO to the view.
-     * @param bookV0 the book VO
+     * @param bookVO the book VO
      */
-    public void bindVO(@NonNull BookV0 bookV0) {
-        mTitleTextView.setText(bookV0.getTitle());
-        mPriceTextView.setText(bookV0.getPrice());
+    public void bindVO(@NonNull BookVO bookVO) {
+        mTitleTextView.setText(bookVO.getTitle());
+        mPriceTextView.setText(bookVO.getPrice());
         Picasso.with(itemView.getContext())
-                .load(Uri.parse(bookV0.getCover()))
+                .load(Uri.parse(bookVO.getCover()))
                 .into(mCoverImageView);
         // TODO : add placeholder and error images
     }

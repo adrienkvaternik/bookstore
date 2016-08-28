@@ -9,7 +9,7 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
-import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
@@ -61,12 +61,12 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
 
     @Override
     public void presentCart(@NonNull List<Book> books, double totalPrice) {
-        List<BookV0> bookV0s = new ArrayList<>();
+        List<BookVO> bookVOs = new ArrayList<>();
         for (Book book : books) {
-            bookV0s.add(convertBookToBookVO(book));
+            bookVOs.add(convertBookToBookVO(book));
         }
 
-        mView.updateCart(new CartVO(bookV0s, mDecimalFormatEuros.format(totalPrice)));
+        mView.updateCart(new CartVO(bookVOs, mDecimalFormatEuros.format(totalPrice)));
     }
 
     @Override
@@ -97,13 +97,13 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     }
 
     /**
-     * Converts a {@link Book} into a {@link BookV0}.
+     * Converts a {@link Book} into a {@link BookVO}.
      * @param book the book to convert.
-     * @return The resulting {@link BookV0}.
+     * @return The resulting {@link BookVO}.
      */
     @NonNull
-    private BookV0 convertBookToBookVO(@NonNull Book book) {
-        return new BookV0(
+    private BookVO convertBookToBookVO(@NonNull Book book) {
+        return new BookVO(
                 book.getIsbn(),
                 book.getTitle(),
                 mDecimalFormatEuros.format(book.getPrice()),
