@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,9 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
 
     @BindView(R.id.cart_recylerview)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.total_price_textview)
+    TextView mTotalPriceTextView;
 
     @Nullable
     @Override
@@ -66,6 +70,6 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     @Override
     public void updateCart(@NonNull CartVO cartVO) {
         mAdapter.updateData(cartVO.getBookV0s());
-        // TODO : update total price
+        mTotalPriceTextView.setText(cartVO.getTotalPrice());
     }
 }
