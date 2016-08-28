@@ -31,6 +31,11 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
         mPresenter.presentCart(books, totalPrice);
     }
 
+    @Override
+    public void getBestOffer() {
+        // TODO : impl
+    }
+
     public void setRepository(BookRepository repository) {
         mRepository = repository;
     }

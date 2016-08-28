@@ -54,6 +54,9 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
         // request the cart information
         mPresenter.requestCart();
 
+        // request the best offer
+        mPresenter.requestBestOffer();
+
         return view;
     }
 

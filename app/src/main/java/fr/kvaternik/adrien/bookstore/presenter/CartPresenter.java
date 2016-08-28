@@ -49,6 +49,11 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     }
 
     @Override
+    public void requestBestOffer() {
+        mModel.getBestOffer();
+    }
+
+    @Override
     public void presentCart(@NonNull List<Book> books, double totalPrice) {
         List<BookV0> bookV0s = new ArrayList<>();
         for (Book book : books) {

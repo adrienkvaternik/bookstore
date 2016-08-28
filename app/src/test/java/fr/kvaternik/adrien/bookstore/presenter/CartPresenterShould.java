@@ -76,4 +76,13 @@ public class CartPresenterShould {
         // assertion
         verify(mMockView).updateCart(Matchers.eq(expectedCartVO));
     }
+
+    @Test
+    public void call_its_model_on_best_offer_request() throws Exception {
+        // action
+        mPresenter.requestBestOffer();
+
+        // assertion
+        verify(mMockModel).getBestOffer();
+    }
 }

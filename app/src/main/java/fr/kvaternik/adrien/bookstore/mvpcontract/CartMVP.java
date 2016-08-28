@@ -32,6 +32,11 @@ public interface CartMVP {
          * Requests the cart.
          */
         void requestCart();
+
+        /**
+         * Requests the best offer.
+         */
+        void requestBestOffer();
     }
 
     /**
@@ -56,5 +61,10 @@ public interface CartMVP {
          * Provides the cart.
          */
         void getCart();
+
+        /**
+         * Provides the best offer.
+         */
+        void getBestOffer();
     }
 }
