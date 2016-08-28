@@ -1,11 +1,11 @@
-package fr.kvaternik.adrien.bookstore.model.api.provider;
+package fr.kvaternik.adrien.bookstore.model.API.provider;
 
 import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import fr.kvaternik.adrien.bookstore.model.api.BookAPI;
+import fr.kvaternik.adrien.bookstore.model.API.BookAPI;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

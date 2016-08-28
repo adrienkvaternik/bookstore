@@ -1,6 +1,6 @@
-package fr.kvaternik.adrien.bookstore.model.api.provider;
+package fr.kvaternik.adrien.bookstore.model.API.provider;
 
-import fr.kvaternik.adrien.bookstore.model.api.BookAPI;
+import fr.kvaternik.adrien.bookstore.model.API.BookAPI;
 
 /**
  * The book API provider.
