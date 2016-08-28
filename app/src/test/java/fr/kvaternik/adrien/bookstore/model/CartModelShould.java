@@ -72,7 +72,7 @@ public class CartModelShould {
     public void send_the_best_offer_to_its_presenter_on_fetch_success() throws Exception {
         // data preparation
         final List<Offer> offers = new ArrayList<>();
-        Offer bestOffer = new MinusOffer();
+        Offer bestOffer = new MinusOffer(20);
         offers.add(bestOffer);
 
         // stub offer optimizer
