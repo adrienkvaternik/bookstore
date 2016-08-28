@@ -7,6 +7,7 @@ import android.os.Bundle;
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.view.fragment.BaseFragment;
 import fr.kvaternik.adrien.bookstore.view.fragment.BookListFragment;
+import fr.kvaternik.adrien.bookstore.view.fragment.CartFragment;
 
 /**
  * The book activity.
@@ -19,7 +20,9 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
 
         // set the book list fragment
-        replaceFragment(new BookListFragment());
+        // TODO : start with book list
+        //replaceFragment(new BookListFragment());
+        replaceFragment(new CartFragment());
     }
 
     /**
