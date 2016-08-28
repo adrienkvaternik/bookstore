@@ -1,5 +1,6 @@
 package fr.kvaternik.adrien.bookstore.model;
 
+import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
 /**
@@ -8,6 +9,7 @@ import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 public class CartModel implements CartMVP.ProvidedModelOperations {
 
     private CartMVP.RequiredPresenterOperations mPresenter;
+    private BookRepository mRepository;
 
     @Override
     public void attachPresenter(CartMVP.RequiredPresenterOperations presenter) {
@@ -16,6 +18,10 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
     @Override
     public void getCart() {
-        // TODO : impl
+        mPresenter.presentCart(mRepository.getBooks());
+    }
+
+    public void setRepository(BookRepository repository) {
+        mRepository = repository;
     }
 }

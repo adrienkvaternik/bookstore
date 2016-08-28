@@ -1,5 +1,10 @@
 package fr.kvaternik.adrien.bookstore.presenter;
 
+import android.support.annotation.NonNull;
+
+import java.util.List;
+
+import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
 /**
@@ -33,5 +38,10 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     @Override
     public void requestCart() {
         mModel.getCart();
+    }
+
+    @Override
+    public void presentCart(@NonNull List<Book> books) {
+        // TODO : impl
     }
 }

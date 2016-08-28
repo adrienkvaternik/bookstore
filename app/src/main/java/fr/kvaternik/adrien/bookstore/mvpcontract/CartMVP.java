@@ -1,5 +1,11 @@
 package fr.kvaternik.adrien.bookstore.mvpcontract;
 
+import android.support.annotation.NonNull;
+
+import java.util.List;
+
+import fr.kvaternik.adrien.bookstore.model.entity.Book;
+
 /**
  * The MVP contract for the cart functionality.
  */
@@ -27,6 +33,11 @@ public interface CartMVP {
      */
     interface RequiredPresenterOperations {
 
+        /**
+         * Presents the cart
+         * @param books the list of {@link Book} to present
+         */
+        void presentCart(@NonNull List<Book> books);
     }
 
     /**
