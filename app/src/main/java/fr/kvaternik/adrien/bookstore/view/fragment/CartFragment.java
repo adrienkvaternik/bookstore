@@ -66,5 +66,6 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     @Override
     public void updateCart(@NonNull CartVO cartVO) {
         mAdapter.updateData(cartVO.getBookV0s());
+        // TODO : update total price
     }
 }

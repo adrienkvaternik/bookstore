@@ -51,6 +51,6 @@ public class CartModelShould {
         mModel.getCart();
 
         // assertion
-        verify(mMockPresenter).presentCart(Matchers.eq(books));
+        verify(mMockPresenter).presentCart(Matchers.eq(books), Matchers.eq(65.0));
     }
 }

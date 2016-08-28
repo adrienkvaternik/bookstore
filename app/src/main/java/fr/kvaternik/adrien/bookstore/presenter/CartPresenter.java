@@ -49,13 +49,13 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     }
 
     @Override
-    public void presentCart(@NonNull List<Book> books) {
+    public void presentCart(@NonNull List<Book> books, double totalPrice) {
         List<BookV0> bookV0s = new ArrayList<>();
         for (Book book : books) {
             bookV0s.add(convertBookToBookVO(book));
         }
 
-        mView.updateCart(new CartVO(bookV0s));
+        mView.updateCart(new CartVO(bookV0s, mDecimalFormat.format(totalPrice)));
     }
 
     /**

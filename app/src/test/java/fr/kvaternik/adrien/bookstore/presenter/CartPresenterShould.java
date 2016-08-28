@@ -68,10 +68,10 @@ public class CartPresenterShould {
         bookVOs.add(new BookV0(secondIsbn, secondTitle, "30,00 €", secondCover));
 
         // expected cart VO creation
-        CartVO expectedCartVO = new CartVO(bookVOs);
+        CartVO expectedCartVO = new CartVO(bookVOs, "65,00 €");
 
         // action
-        mPresenter.presentCart(books);
+        mPresenter.presentCart(books, 65.0);
 
         // assertion
         verify(mMockView).updateCart(Matchers.eq(expectedCartVO));

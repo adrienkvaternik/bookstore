@@ -1,5 +1,8 @@
 package fr.kvaternik.adrien.bookstore.model;
 
+import java.util.List;
+
+import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
@@ -18,7 +21,14 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
     @Override
     public void getCart() {
-        mPresenter.presentCart(mRepository.getBooks());
+        List<Book> books = mRepository.getBooks();
+
+        double totalPrice = 0;
+        for (Book book : books) {
+            totalPrice += book.getPrice();
+        }
+
+        mPresenter.presentCart(books, totalPrice);
     }
 
     public void setRepository(BookRepository repository) {

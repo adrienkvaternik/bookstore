@@ -42,8 +42,9 @@ public interface CartMVP {
         /**
          * Presents the cart.
          * @param books the list of {@link Book} to present
+         * @param totalPrice the total price of the cart
          */
-        void presentCart(@NonNull List<Book> books);
+        void presentCart(@NonNull List<Book> books, double totalPrice);
     }
 
     /**
