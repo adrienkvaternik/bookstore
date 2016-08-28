@@ -42,6 +42,11 @@ public interface BookListMVP {
          * @param books the books to present
          */
         void presentBooks(@NonNull List<Book> books);
+
+        /**
+         * Presents an error.
+         */
+        void presentError();
     }
 
     /**

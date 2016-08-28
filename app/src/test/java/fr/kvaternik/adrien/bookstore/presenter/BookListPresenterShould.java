@@ -14,7 +14,6 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**

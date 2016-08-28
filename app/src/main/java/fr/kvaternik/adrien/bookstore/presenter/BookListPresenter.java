@@ -57,6 +57,11 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
         mView.updateBookList(bookV0s);
     }
 
+    @Override
+    public void presentError() {
+        // TODO : impl
+    }
+
     /**
      * Converts a {@link Book} into a {@link BookV0}.
      * @param book the book to convert.
