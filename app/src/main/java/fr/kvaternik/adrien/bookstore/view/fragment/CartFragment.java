@@ -36,6 +36,12 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     @BindView(R.id.total_price_textview)
     TextView mTotalPriceTextView;
 
+    @BindView(R.id.offer_value_textview)
+    TextView mOfferValueTextView;
+
+    @BindView(R.id.reducted_price_textview)
+    TextView mReductedPriceTextView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
 
     @Override
     public void updateOffer(@NonNull OfferVO offerVO) {
-        // TODO : impl
+        mOfferValueTextView.setText(offerVO.getOfferValue());
+        mReductedPriceTextView.setText(offerVO.getReductedPrice());
     }
 }
