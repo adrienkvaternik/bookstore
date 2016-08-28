@@ -40,5 +40,6 @@ public class BookListViewHolder extends BaseViewHolder {
         Picasso.with(itemView.getContext())
                 .load(Uri.parse(bookV0.getCover()))
                 .into(mCoverImageView);
+        // TODO : add placeholder and error images
     }
 }
