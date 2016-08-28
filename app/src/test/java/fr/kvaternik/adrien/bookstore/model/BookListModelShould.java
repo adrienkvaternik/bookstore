@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
-import fr.kvaternik.adrien.bookstore.model.service.BookService;
+import fr.kvaternik.adrien.bookstore.model.service.BookServiceContract;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 
 import static org.mockito.Mockito.*;
@@ -30,7 +30,7 @@ public class BookListModelShould {
     private BookListMVP.RequiredPresenterOperations mMockPresenter;
 
     @Mock
-    private BookService mMockService;
+    private BookServiceContract mMockService;
 
     @Before
     public void setUp() throws Exception {
@@ -50,10 +50,10 @@ public class BookListModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((BookService.Callback) invocation.getArguments()[0]).onSuccess(books);
+                ((BookServiceContract.Callback) invocation.getArguments()[0]).onSuccess(books);
                 return null;
             }
-        }).when(mMockService).fetchBooks(isA(BookService.Callback.class));
+        }).when(mMockService).fetchBooks(isA(BookServiceContract.Callback.class));
 
         // action
         mModel.getBooks();
@@ -68,10 +68,10 @@ public class BookListModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((BookService.Callback) invocation.getArguments()[0]).onFailure();
+                ((BookServiceContract.Callback) invocation.getArguments()[0]).onFailure();
                 return null;
             }
-        }).when(mMockService).fetchBooks(isA(BookService.Callback.class));
+        }).when(mMockService).fetchBooks(isA(BookServiceContract.Callback.class));
 
         // action
         mModel.getBooks();

@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
-import fr.kvaternik.adrien.bookstore.model.service.BookService;
+import fr.kvaternik.adrien.bookstore.model.service.BookServiceContract;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 
 /**
@@ -14,7 +14,7 @@ import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 public class BookListModel implements BookListMVP.ProvidedModelOperations {
 
     private BookListMVP.RequiredPresenterOperations mPresenter;
-    private BookService mService;
+    private BookServiceContract mService;
 
     @Override
     public void attachPresenter(BookListMVP.RequiredPresenterOperations presenter) {
@@ -23,7 +23,7 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
 
     @Override
     public void getBooks() {
-        mService.fetchBooks(new BookService.Callback() {
+        mService.fetchBooks(new BookServiceContract.Callback() {
             @Override
             public void onSuccess(@NonNull List<Book> books) {
                 mPresenter.presentBooks(books);
@@ -36,7 +36,7 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
         });
     }
 
-    public void setService(BookService service) {
+    public void setService(BookServiceContract service) {
         mService = service;
     }
 }
