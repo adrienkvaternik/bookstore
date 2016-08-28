@@ -20,10 +20,10 @@ public class FakeBookListModel implements BookListMVP.ProvidedModelOperations {
     @Override
     public void getBooks() {
         ArrayList<Book> books = new ArrayList<>();
-        books.add(new Book("", "Mon titre", 12, ""));
-        books.add(new Book("", "Mon titre", 12, ""));
-        books.add(new Book("", "Mon titre", 12, ""));
-        books.add(new Book("", "Mon titre", 12, ""));
+        books.add(new Book("", "Mon titre", 12, "http://henri-potier.xebia.fr/hp0.jpg"));
+        books.add(new Book("", "Mon titre", 12, "http://henri-potier.xebia.fr/hp1.jpg"));
+        books.add(new Book("", "Mon titre", 12, "http://henri-potier.xebia.fr/hp2.jpg"));
+        books.add(new Book("", "Mon titre", 12, "http://henri-potier.xebia.fr/hp3.jpg"));
 
         mPresenter.presentBooks(books);
     }

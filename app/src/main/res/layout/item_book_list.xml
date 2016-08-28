@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/item_book_list_height"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <TextView
-        android:id="@+id/title_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Henri Potier à l'école des sorciers"/>
+    <ImageView
+        android:id="@+id/cover_imageview"
+        android:layout_width="@dimen/item_book_list_cover_width"
+        android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/price_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_textview"
-        tools:text="35,00 €" />
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Henri Potier à l'école des sorciers"/>
+
+        <TextView
+            android:id="@+id/price_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            tools:text="35,00 €" />
+
+    </RelativeLayout>
+
+</LinearLayout>
