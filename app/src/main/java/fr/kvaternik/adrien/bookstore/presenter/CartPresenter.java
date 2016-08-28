@@ -69,6 +69,11 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
         // TODO : impl
     }
 
+    @Override
+    public void presentNoOffer() {
+        // TODO : impl
+    }
+
     /**
      * Converts a {@link Book} into a {@link BookV0}.
      * @param book the book to convert.

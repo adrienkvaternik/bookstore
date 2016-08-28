@@ -57,6 +57,11 @@ public interface CartMVP {
          * @param bestOffer the best offer
          */
         void presentBestOffer(@NonNull Offer bestOffer);
+
+        /**
+         * Present the absence of offer.
+         */
+        void presentNoOffer();
     }
 
     /**

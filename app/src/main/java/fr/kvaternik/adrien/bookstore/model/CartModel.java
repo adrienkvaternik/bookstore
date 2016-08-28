@@ -50,15 +50,13 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
         mService.fetchOffers(new OfferServiceContract.Callback() {
             @Override
             public void onSuccess(@NonNull List<Offer> offers) {
-                if (!offers.isEmpty()) {
-                    List<Book> books = getBooksFromRepository();
-                    double totalPrice = getTotalPriceForBooks(books);
-                    Offer bestOffer = mOfferOptimizer.getBestOffer(offers, totalPrice);
-                    if (bestOffer != null) {
-                        mPresenter.presentBestOffer(bestOffer);
-                    } else {
-                        // TODO : handle no offer
-                    }
+                List<Book> books = getBooksFromRepository();
+                double totalPrice = getTotalPriceForBooks(books);
+                Offer bestOffer = mOfferOptimizer.getBestOffer(offers, totalPrice);
+                if (bestOffer != null) {
+                    mPresenter.presentBestOffer(bestOffer);
+                } else {
+                    mPresenter.presentNoOffer();
                 }
             }
 
