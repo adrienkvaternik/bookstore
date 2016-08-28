@@ -9,14 +9,15 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
 
 /**
  * The presenter for the book list.
  */
 public class BookListPresenter implements BookListMVP.ProvidedPresenterOperations, BookListMVP.RequiredPresenterOperations {
 
-    /** Decimal formatter with 2 decimals, used to convert a {@link Book} into a {@link BookV0}, see method {@link #convertBookToBookVO(Book)} */
-    private DecimalFormat mDecimalFormat = new DecimalFormat("#.00");
+    /** Decimal formatter with 2 decimals, in euros, used to convert a {@link Book} into a {@link BookV0}, see method {@link #convertBookToBookVO(Book)} */
+    private DecimalFormat mDecimalFormat = DecimalFormatUtils.decimalFormatEuros();
 
     private BookListMVP.RequiredViewOperations mView;
     private BookListMVP.ProvidedModelOperations mModel;

@@ -3,6 +3,7 @@ package fr.kvaternik.adrien.bookstore.mvpconfigurator;
 import android.support.annotation.NonNull;
 
 import fr.kvaternik.adrien.bookstore.model.BookListModel;
+import fr.kvaternik.adrien.bookstore.model.FakeBookListModel;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.BookListPresenter;
 
@@ -18,7 +19,10 @@ public class BookListMVPConfigurator {
      */
     public void createMVPWithView(@NonNull BookListMVP.RequiredViewOperations view) {
         BookListPresenter presenter = new BookListPresenter();
-        BookListModel model = new BookListModel();
+
+        // TODO : use real model
+        //BookListModel model = new BookListModel();
+        FakeBookListModel model = new FakeBookListModel();
 
         view.attachPresenter(presenter);
         presenter.attachView(view);
