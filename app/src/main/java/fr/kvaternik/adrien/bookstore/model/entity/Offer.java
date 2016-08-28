@@ -10,7 +10,6 @@ public abstract class Offer {
     public static final int UNIT_PERCENT = 2;
 
     protected double value;
-    protected int unit;
 
     /**
      * Provides the price after the offer application on the specified total price.
@@ -19,16 +18,17 @@ public abstract class Offer {
      */
     public abstract double getReducedPrice(double totalPrice);
 
-    public Offer(double value, int unit) {
+    /**
+     * Provides the offer unit.
+     * @return The offer unit.
+     */
+    public abstract int getUnit();
+
+    public Offer(double value) {
         this.value = value;
-        this.unit = unit;
     }
 
     public double getValue() {
         return value;
-    }
-
-    public int getUnit() {
-        return unit;
     }
 }

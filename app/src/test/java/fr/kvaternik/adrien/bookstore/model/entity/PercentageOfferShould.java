@@ -20,4 +20,9 @@ public class PercentageOfferShould {
     public void zero_a_negative_price() throws Exception {
         assertEquals(0, new PercentageOffer(110).getReducedPrice(50), ACCURACY);
     }
+
+    @Test
+    public void have_an_unit_percent() throws Exception {
+        assertEquals(Offer.UNIT_PERCENT, new PercentageOffer(10).getUnit());
+    }
 }

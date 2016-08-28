@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
-import fr.kvaternik.adrien.bookstore.model.API.BookAPI;
-import fr.kvaternik.adrien.bookstore.model.API.provider.BookAPIProvider;
+import fr.kvaternik.adrien.bookstore.model.service.API.BookAPI;
+import fr.kvaternik.adrien.bookstore.model.service.API.provider.BookAPIProvider;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import retrofit2.Call;
 import retrofit2.Response;

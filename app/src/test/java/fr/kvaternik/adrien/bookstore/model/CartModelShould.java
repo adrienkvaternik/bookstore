@@ -89,10 +89,10 @@ public class CartModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((OfferServiceContract.Callback) invocation.getArguments()[0]).onSuccess(offers);
+                ((OfferServiceContract.Callback) invocation.getArguments()[1]).onSuccess(offers);
                 return null;
             }
-        }).when(mMockService).fetchOffers(isA(OfferServiceContract.Callback.class));
+        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(OfferServiceContract.Callback.class));
 
         // action
         mModel.getBestOffer();
@@ -113,10 +113,10 @@ public class CartModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((OfferServiceContract.Callback) invocation.getArguments()[0]).onSuccess(offers);
+                ((OfferServiceContract.Callback) invocation.getArguments()[1]).onSuccess(offers);
                 return null;
             }
-        }).when(mMockService).fetchOffers(isA(OfferServiceContract.Callback.class));
+        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(OfferServiceContract.Callback.class));
 
         // action
         mModel.getBestOffer();

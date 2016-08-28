@@ -68,6 +68,13 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     }
 
     @Override
+    public void onDestroy() {
+        // destroy MVP with configurator
+        mConfigurator.destroyMVPWithPresenter(mPresenter);
+        super.onDestroy();
+    }
+
+    @Override
     public int getViewId() {
         return R.layout.fragment_cart;
     }

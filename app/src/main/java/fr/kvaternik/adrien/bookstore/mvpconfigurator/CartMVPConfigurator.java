@@ -5,7 +5,8 @@ import android.support.annotation.NonNull;
 import fr.kvaternik.adrien.bookstore.model.CartModel;
 import fr.kvaternik.adrien.bookstore.model.calculation.OfferOptimizer;
 import fr.kvaternik.adrien.bookstore.model.repository.FakeCartRepository;
-import fr.kvaternik.adrien.bookstore.model.service.FakeOfferService;
+import fr.kvaternik.adrien.bookstore.model.service.API.provider.RetrofitAPIProvider;
+import fr.kvaternik.adrien.bookstore.model.service.OfferService;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 import fr.kvaternik.adrien.bookstore.presenter.CartPresenter;
 
@@ -26,7 +27,9 @@ public class CartMVPConfigurator {
         // create model
         CartModel model = new CartModel();
         model.setRepository(new FakeCartRepository());
-        model.setService(new FakeOfferService());
+        OfferService service = new OfferService();
+        service.setAPIProvider(RetrofitAPIProvider.getInstance());
+        model.setService(service);
         model.setOfferOptimizer(new OfferOptimizer());
 
         // V -> P

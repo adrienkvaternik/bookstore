@@ -20,4 +20,9 @@ public class MinusOfferShould {
     public void zero_a_negative_price() throws Exception {
         assertEquals(0, new MinusOffer(10).getReducedPrice(5), ACCURACY);
     }
+
+    @Test
+    public void have_an_unit_euros() throws Exception {
+        assertEquals(Offer.UNIT_EUROS, new MinusOffer(10).getUnit());
+    }
 }

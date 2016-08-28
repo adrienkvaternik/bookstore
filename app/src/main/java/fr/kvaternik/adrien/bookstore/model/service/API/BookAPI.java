@@ -1,4 +1,4 @@
-package fr.kvaternik.adrien.bookstore.model.API;
+package fr.kvaternik.adrien.bookstore.model.service.API;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import retrofit2.http.GET;
 public interface BookAPI {
 
     /**
-     * Fetchs the book list
+     * Fetches the book list
      * @return The call.
      */
     @GET("books")

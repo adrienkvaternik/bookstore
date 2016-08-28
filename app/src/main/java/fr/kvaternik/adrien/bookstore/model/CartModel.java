@@ -2,6 +2,7 @@ package fr.kvaternik.adrien.bookstore.model;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.calculation.OfferOptimizerContract;
@@ -47,7 +48,10 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
     @Override
     public void getBestOffer() {
-        mService.fetchOffers(new OfferServiceContract.Callback() {
+        List<Book> books = getBooksInCartFromRepository();
+        List<String> isbnList = getIsbnListFromBooks(books);
+
+        mService.fetchOffers(isbnList, new OfferServiceContract.Callback() {
             @Override
             public void onSuccess(@NonNull List<Offer> offers) {
                 List<Book> books = getBooksInCartFromRepository();
@@ -86,5 +90,20 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
             totalPrice += book.getPrice();
         }
         return totalPrice;
+    }
+
+    /**
+     * Provides the isbn list from the specified books.
+     * @param books the books
+     * @return The isbn list.
+     */
+    @NonNull
+    private List<String> getIsbnListFromBooks(@NonNull List<Book> books) {
+        List<String> isbnList = new ArrayList<>();
+        for (Book book : books) {
+            isbnList.add(book.getIsbn());
+        }
+
+        return isbnList;
     }
 }

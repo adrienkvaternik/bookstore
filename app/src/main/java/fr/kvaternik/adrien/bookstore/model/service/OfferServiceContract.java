@@ -14,10 +14,11 @@ public interface OfferServiceContract {
 
     /**
      * Fetches the offers.
+     * @param isbnList the isbn list of the books
      * @param callback the callback
      */
-    void fetchOffers(@Nullable Callback callback);
-
+    void fetchOffers(@NonNull List<String> isbnList, @Nullable Callback callback);
+    
     /**
      * The service callback.
      */

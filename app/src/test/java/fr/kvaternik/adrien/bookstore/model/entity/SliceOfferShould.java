@@ -21,4 +21,9 @@ public class SliceOfferShould {
     public void zero_a_negative_price() throws Exception {
         assertEquals(0, new SliceOffer(100, 10).getReducedPrice(50), ACCURACY);
     }
+
+    @Test
+    public void have_an_unit_euros() throws Exception {
+        assertEquals(Offer.UNIT_EUROS, new SliceOffer(10, 100).getUnit());
+    }
 }
