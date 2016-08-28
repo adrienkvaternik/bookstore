@@ -1,9 +1,14 @@
 package fr.kvaternik.adrien.bookstore.model;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
+import fr.kvaternik.adrien.bookstore.model.calculation.OfferOptimizerContract;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
+import fr.kvaternik.adrien.bookstore.model.service.OfferServiceContract;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
 /**
@@ -13,6 +18,20 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
     private CartMVP.RequiredPresenterOperations mPresenter;
     private BookRepository mRepository;
+    private OfferServiceContract mService;
+    private OfferOptimizerContract mOfferOptimizer;
+
+    public void setRepository(BookRepository repository) {
+        mRepository = repository;
+    }
+
+    public void setService(OfferServiceContract service) {
+        mService = service;
+    }
+
+    public void setOfferOptimizer(OfferOptimizerContract offerOptimizer) {
+        mOfferOptimizer = offerOptimizer;
+    }
 
     @Override
     public void attachPresenter(CartMVP.RequiredPresenterOperations presenter) {
@@ -21,22 +40,53 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
     @Override
     public void getCart() {
-        List<Book> books = mRepository.getBooks();
-
-        double totalPrice = 0;
-        for (Book book : books) {
-            totalPrice += book.getPrice();
-        }
-
+        List<Book> books = getBooksFromRepository();
+        double totalPrice = getTotalPriceForBooks(books);
         mPresenter.presentCart(books, totalPrice);
     }
 
     @Override
     public void getBestOffer() {
-        // TODO : impl
+        mService.fetchOffers(new OfferServiceContract.Callback() {
+            @Override
+            public void onSuccess(@NonNull List<Offer> offers) {
+                if (!offers.isEmpty()) {
+                    List<Book> books = getBooksFromRepository();
+                    double totalPrice = getTotalPriceForBooks(books);
+                    Offer bestOffer = mOfferOptimizer.getBestOffer(offers, totalPrice);
+                    if (bestOffer != null) {
+                        mPresenter.presentBestOffer(bestOffer);
+                    } else {
+                        // TODO : handle no offer
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure() {
+                // TODO : impl
+            }
+        });
     }
 
-    public void setRepository(BookRepository repository) {
-        mRepository = repository;
+    /**
+     * Provides the book list from the repository.
+     * @return The book list.
+     */
+    private List<Book> getBooksFromRepository() {
+        return mRepository.getBooks();
+    }
+
+    /**
+     * Provides the total price for the specified books.
+     * @param books the books
+     * @return The total price.
+     */
+    private double getTotalPriceForBooks(List<Book> books) {
+        double totalPrice = 0;
+        for (Book book : books) {
+            totalPrice += book.getPrice();
+        }
+        return totalPrice;
     }
 }

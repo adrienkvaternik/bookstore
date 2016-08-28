@@ -5,13 +5,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.kvaternik.adrien.bookstore.model.calculation.OfferOptimizerContract;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.model.entity.MinusOffer;
+import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
+import fr.kvaternik.adrien.bookstore.model.service.OfferServiceContract;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
 import static org.mockito.Mockito.*;
@@ -30,11 +36,19 @@ public class CartModelShould {
     @Mock
     private BookRepository mMockRepository;
 
+    @Mock
+    private OfferOptimizerContract mMockOfferOptimizer;
+
+    @Mock
+    private OfferServiceContract mMockService;
+
     @Before
     public void setUp() throws Exception {
         mModel = new CartModel();
         mModel.attachPresenter(mMockPresenter);
         mModel.setRepository(mMockRepository);
+        mModel.setOfferOptimizer(mMockOfferOptimizer);
+        mModel.setService(mMockService);
     }
 
     @Test
@@ -51,6 +65,32 @@ public class CartModelShould {
         mModel.getCart();
 
         // assertion
-        verify(mMockPresenter).presentCart(Matchers.eq(books), Matchers.eq(65.0));
+        verify(mMockPresenter).presentCart(eq(books), eq(65.0));
+    }
+
+    @Test
+    public void send_the_best_offer_to_its_presenter_on_fetch_success() throws Exception {
+        // data preparation
+        final List<Offer> offers = new ArrayList<>();
+        Offer bestOffer = new MinusOffer();
+        offers.add(bestOffer);
+
+        // stub offer optimizer
+        when(mMockOfferOptimizer.getBestOffer(anyListOf(Offer.class), anyDouble())).thenReturn(bestOffer);
+
+        // stub service
+        doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) throws Throwable {
+                ((OfferServiceContract.Callback) invocation.getArguments()[0]).onSuccess(offers);
+                return null;
+            }
+        }).when(mMockService).fetchOffers(isA(OfferServiceContract.Callback.class));
+
+        // action
+        mModel.getBestOffer();
+
+        // assertion
+        verify(mMockPresenter).presentBestOffer(eq(bestOffer));
     }
 }

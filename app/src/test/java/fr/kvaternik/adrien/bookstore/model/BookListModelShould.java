@@ -59,7 +59,7 @@ public class BookListModelShould {
         mModel.getBooks();
 
         // assertion
-        verify(mMockPresenter).presentBooks(Matchers.eq(books));
+        verify(mMockPresenter).presentBooks(eq(books));
     }
 
     @Test

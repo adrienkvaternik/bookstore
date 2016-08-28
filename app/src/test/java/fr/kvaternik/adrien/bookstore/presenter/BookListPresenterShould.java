@@ -70,6 +70,6 @@ public class BookListPresenterShould {
         mPresenter.presentBooks(books);
 
         // assertion
-        verify(mMockView).updateBookList(Matchers.eq(expectedBookVOs));
+        verify(mMockView).updateBookList(eq(expectedBookVOs));
     }
 }

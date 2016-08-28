@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
 
 /**
@@ -50,6 +51,12 @@ public interface CartMVP {
          * @param totalPrice the total price of the cart
          */
         void presentCart(@NonNull List<Book> books, double totalPrice);
+
+        /**
+         * Presents the best offer.
+         * @param bestOffer the best offer
+         */
+        void presentBestOffer(@NonNull Offer bestOffer);
     }
 
     /**

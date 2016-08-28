@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
@@ -61,6 +62,11 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
         }
 
         mView.updateCart(new CartVO(bookV0s, mDecimalFormat.format(totalPrice)));
+    }
+
+    @Override
+    public void presentBestOffer(@NonNull Offer bestOffer) {
+        // TODO : impl
     }
 
     /**

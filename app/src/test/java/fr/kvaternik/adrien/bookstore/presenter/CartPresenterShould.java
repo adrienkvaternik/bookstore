@@ -74,7 +74,7 @@ public class CartPresenterShould {
         mPresenter.presentCart(books, 65.0);
 
         // assertion
-        verify(mMockView).updateCart(Matchers.eq(expectedCartVO));
+        verify(mMockView).updateCart(eq(expectedCartVO));
     }
 
     @Test
