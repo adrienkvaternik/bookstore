@@ -5,13 +5,13 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 
 /**
- * The book repository.
+ * The cart repository.
  */
-public interface BookRepository {
+public interface CartRepository {
 
     /**
-     * Provides the books.
+     * Provides the books in the cart.
      * @return A list of {@link Book}.
      */
-    List<Book> getBooks();
+    List<Book> getCartBooks();
 }

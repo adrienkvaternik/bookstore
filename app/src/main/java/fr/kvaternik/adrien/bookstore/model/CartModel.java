@@ -7,7 +7,7 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.calculation.OfferOptimizerContract;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
-import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
+import fr.kvaternik.adrien.bookstore.model.repository.CartRepository;
 import fr.kvaternik.adrien.bookstore.model.service.OfferServiceContract;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
@@ -17,11 +17,11 @@ import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 public class CartModel implements CartMVP.ProvidedModelOperations {
 
     private CartMVP.RequiredPresenterOperations mPresenter;
-    private BookRepository mRepository;
+    private CartRepository mRepository;
     private OfferServiceContract mService;
     private OfferOptimizerContract mOfferOptimizer;
 
-    public void setRepository(BookRepository repository) {
+    public void setRepository(CartRepository repository) {
         mRepository = repository;
     }
 
@@ -40,7 +40,7 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
     @Override
     public void getCart() {
-        List<Book> books = getBooksFromRepository();
+        List<Book> books = getBooksInCartFromRepository();
         double totalPrice = getTotalPriceForBooks(books);
         mPresenter.presentCart(books, totalPrice);
     }
@@ -50,7 +50,7 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
         mService.fetchOffers(new OfferServiceContract.Callback() {
             @Override
             public void onSuccess(@NonNull List<Offer> offers) {
-                List<Book> books = getBooksFromRepository();
+                List<Book> books = getBooksInCartFromRepository();
                 double totalPrice = getTotalPriceForBooks(books);
                 Offer bestOffer = mOfferOptimizer.getBestOffer(offers, totalPrice);
                 if (bestOffer != null) {
@@ -68,11 +68,11 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
     }
 
     /**
-     * Provides the book list from the repository.
+     * Provides the book list present in the cart from the repository.
      * @return The book list.
      */
-    private List<Book> getBooksFromRepository() {
-        return mRepository.getBooks();
+    private List<Book> getBooksInCartFromRepository() {
+        return mRepository.getCartBooks();
     }
 
     /**

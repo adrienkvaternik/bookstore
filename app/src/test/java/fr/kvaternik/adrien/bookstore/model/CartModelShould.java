@@ -3,7 +3,6 @@ package fr.kvaternik.adrien.bookstore.model;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -16,7 +15,7 @@ import fr.kvaternik.adrien.bookstore.model.calculation.OfferOptimizerContract;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.entity.MinusOffer;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
-import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
+import fr.kvaternik.adrien.bookstore.model.repository.CartRepository;
 import fr.kvaternik.adrien.bookstore.model.service.OfferServiceContract;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
@@ -34,7 +33,7 @@ public class CartModelShould {
     private CartMVP.RequiredPresenterOperations mMockPresenter;
 
     @Mock
-    private BookRepository mMockRepository;
+    private CartRepository mMockRepository;
 
     @Mock
     private OfferOptimizerContract mMockOfferOptimizer;
@@ -59,7 +58,7 @@ public class CartModelShould {
         books.add(new Book("a460afed-e5e7-4e39-a39d-c885c05db861", "Henri Potier et la Chambre des secrets", 30.0, "http://henri-potier.xebia.fr/hp1.jpg"));
 
         // stub repository
-        when(mMockRepository.getBooks()).thenReturn(books);
+        when(mMockRepository.getCartBooks()).thenReturn(books);
 
         // action
         mModel.getCart();
@@ -76,7 +75,7 @@ public class CartModelShould {
         books.add(new Book("a460afed-e5e7-4e39-a39d-c885c05db861", "Henri Potier et la Chambre des secrets", 30.0, "http://henri-potier.xebia.fr/hp1.jpg"));
 
         // stub repository
-        when(mMockRepository.getBooks()).thenReturn(books);
+        when(mMockRepository.getCartBooks()).thenReturn(books);
 
         // offers preparation
         final List<Offer> offers = new ArrayList<>();

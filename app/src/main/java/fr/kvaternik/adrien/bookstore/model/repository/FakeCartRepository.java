@@ -8,9 +8,9 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
 /**
  * A fake book repository.
  */
-public class FakeBookRepository implements BookRepository {
+public class FakeCartRepository implements CartRepository {
     @Override
-    public List<Book> getBooks() {
+    public List<Book> getCartBooks() {
         ArrayList<Book> books = new ArrayList<>();
         books.add(new Book("", "Mon titre", 12, "http://henri-potier.xebia.fr/hp0.jpg"));
         books.add(new Book("", "Mon titre", 12, "http://henri-potier.xebia.fr/hp0.jpg"));
