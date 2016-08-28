@@ -1,4 +1,4 @@
-package fr.kvaternik.adrien.bookstore.model.API;
+package fr.kvaternik.adrien.bookstore.model.api;
 
 import java.util.List;
 
