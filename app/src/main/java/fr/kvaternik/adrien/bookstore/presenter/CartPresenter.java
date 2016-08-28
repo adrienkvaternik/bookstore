@@ -29,4 +29,9 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     public void detachModel() {
         mModel = null;
     }
+
+    @Override
+    public void requestCart() {
+        mModel.getCart();
+    }
 }

@@ -16,7 +16,10 @@ public interface CartMVP {
      * Operations provided by the presenter to the view.
      */
     interface ProvidedPresenterOperations extends AttachmentMVP.Presenter<RequiredViewOperations,ProvidedModelOperations> {
-
+        /**
+         * Requests the cart.
+         */
+        void requestCart();
     }
 
     /**
@@ -31,5 +34,9 @@ public interface CartMVP {
      */
     interface ProvidedModelOperations extends AttachmentMVP.Model<RequiredPresenterOperations> {
 
+        /**
+         * Provides the cart.
+         */
+        void getCart();
     }
 }

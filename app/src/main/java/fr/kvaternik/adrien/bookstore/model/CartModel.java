@@ -13,4 +13,9 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
     public void attachPresenter(CartMVP.RequiredPresenterOperations presenter) {
         mPresenter = presenter;
     }
+
+    @Override
+    public void getCart() {
+        // TODO : impl
+    }
 }

@@ -45,6 +45,9 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
         mConfigurator = new CartMVPConfigurator();
         mConfigurator.createMVPWithView(this);
 
+        // request the cart information
+        mPresenter.requestCart();
+
         return view;
     }
 

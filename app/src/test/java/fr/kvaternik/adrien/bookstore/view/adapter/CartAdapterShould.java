@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Tests for {@link CartAdapter}.
  */
-public class CartAdapterTest {
+public class CartAdapterShould {
 
     @Test
     public void have_an_item_count_equal_to_its_data_size() throws Exception {
