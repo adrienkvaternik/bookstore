@@ -124,4 +124,25 @@ public class CartModelShould {
         // assertion
         verify(mMockPresenter).presentNoOffer();
     }
+
+    @Test
+    public void send_an_error_to_its_presenter_when_on_fetch_failure() throws Exception {
+        // stub offer optimizer
+        when(mMockOfferOptimizer.getBestOffer(anyListOf(Offer.class), anyDouble())).thenReturn(null);
+
+        // stub service
+        doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) throws Throwable {
+                ((OfferServiceContract.Callback) invocation.getArguments()[1]).onFailure();
+                return null;
+            }
+        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(OfferServiceContract.Callback.class));
+
+        // action
+        mModel.getBestOffer();
+
+        // assertion
+        verify(mMockPresenter).presentOfferError();
+    }
 }

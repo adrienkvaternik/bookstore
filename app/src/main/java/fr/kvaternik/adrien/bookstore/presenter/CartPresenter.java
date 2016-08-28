@@ -96,6 +96,11 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
         // TODO : impl
     }
 
+    @Override
+    public void presentOfferError() {
+        // TODO : impl
+    }
+
     /**
      * Converts a {@link Book} into a {@link BookVO}.
      * @param book the book to convert.

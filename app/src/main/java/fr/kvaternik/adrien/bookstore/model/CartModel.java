@@ -66,7 +66,7 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
             @Override
             public void onFailure() {
-                // TODO : impl
+                mPresenter.presentOfferError();
             }
         });
     }

@@ -67,9 +67,14 @@ public interface CartMVP {
         void presentBestOffer(@NonNull Offer bestOffer, double reducedPrice);
 
         /**
-         * Present the absence of offer.
+         * Presents the absence of offer.
          */
         void presentNoOffer();
+
+        /**
+         * Presents the offer error.
+         */
+        void presentOfferError();
     }
 
     /**
