@@ -62,9 +62,9 @@ public interface CartMVP {
         /**
          * Presents the best offer.
          * @param bestOffer the best offer
-         * @param reductedPrice the reducted price
+         * @param reducedPrice the reduced price
          */
-        void presentBestOffer(@NonNull Offer bestOffer, double reductedPrice);
+        void presentBestOffer(@NonNull Offer bestOffer, double reducedPrice);
 
         /**
          * Present the absence of offer.

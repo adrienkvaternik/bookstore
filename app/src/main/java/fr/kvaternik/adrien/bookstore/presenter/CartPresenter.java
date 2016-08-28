@@ -70,7 +70,7 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     }
 
     @Override
-    public void presentBestOffer(@NonNull Offer bestOffer, double reductedPrice) {
+    public void presentBestOffer(@NonNull Offer bestOffer, double reducedPrice) {
         int offerUnit = bestOffer.getUnit();
 
         DecimalFormat decimalFormat;
@@ -88,7 +88,7 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
                 throw new IllegalStateException("Unknown offer unit : " + offerUnit);
         }
 
-        mView.updateOffer(new OfferVO(decimalFormat.format(bestOffer.getValue() * multiplier), mDecimalFormatEuros.format(reductedPrice)));
+        mView.updateOffer(new OfferVO(decimalFormat.format(bestOffer.getValue() * multiplier), mDecimalFormatEuros.format(reducedPrice)));
     }
 
     @Override

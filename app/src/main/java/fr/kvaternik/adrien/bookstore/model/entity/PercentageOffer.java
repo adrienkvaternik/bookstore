@@ -10,7 +10,7 @@ public class PercentageOffer extends Offer {
     }
 
     @Override
-    public double getPriceAfterApplication(double totalPrice) {
+    public double getReducedPrice(double totalPrice) {
         return Math.max(totalPrice * (1 - value/100.0), 0);
     }
 }

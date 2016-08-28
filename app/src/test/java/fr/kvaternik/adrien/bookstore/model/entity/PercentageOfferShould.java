@@ -13,11 +13,11 @@ public class PercentageOfferShould {
 
     @Test
     public void apply_right_reduction() throws Exception {
-        assertEquals(45, new PercentageOffer(10).getPriceAfterApplication(50), ACCURACY);
+        assertEquals(45, new PercentageOffer(10).getReducedPrice(50), ACCURACY);
     }
 
     @Test
     public void zero_a_negative_price() throws Exception {
-        assertEquals(0, new PercentageOffer(110).getPriceAfterApplication(50), ACCURACY);
+        assertEquals(0, new PercentageOffer(110).getReducedPrice(50), ACCURACY);
     }
 }

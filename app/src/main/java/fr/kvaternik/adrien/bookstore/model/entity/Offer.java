@@ -15,9 +15,9 @@ public abstract class Offer {
     /**
      * Provides the price after the offer application on the specified total price.
      * @param totalPrice the total price.
-     * @return The price after the offer application.
+     * @return The reduced price.
      */
-    public abstract double getPriceAfterApplication(double totalPrice);
+    public abstract double getReducedPrice(double totalPrice);
 
     public Offer(double value, int unit) {
         this.value = value;

@@ -6,19 +6,19 @@ package fr.kvaternik.adrien.bookstore.presenter.VO;
 public class OfferVO {
 
     private String offerValue;
-    private String reductedPrice;
+    private String reducedPrice;
 
-    public OfferVO(String offerValue, String reductedPrice) {
+    public OfferVO(String offerValue, String reducedPrice) {
         this.offerValue = offerValue;
-        this.reductedPrice = reductedPrice;
+        this.reducedPrice = reducedPrice;
     }
 
     public String getOfferValue() {
         return offerValue;
     }
 
-    public String getReductedPrice() {
-        return reductedPrice;
+    public String getReducedPrice() {
+        return reducedPrice;
     }
 
     @Override
@@ -30,14 +30,14 @@ public class OfferVO {
 
         if (offerValue != null ? !offerValue.equals(offerVO.offerValue) : offerVO.offerValue != null)
             return false;
-        return reductedPrice != null ? reductedPrice.equals(offerVO.reductedPrice) : offerVO.reductedPrice == null;
+        return reducedPrice != null ? reducedPrice.equals(offerVO.reducedPrice) : offerVO.reducedPrice == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = offerValue != null ? offerValue.hashCode() : 0;
-        result = 31 * result + (reductedPrice != null ? reductedPrice.hashCode() : 0);
+        result = 31 * result + (reducedPrice != null ? reducedPrice.hashCode() : 0);
         return result;
     }
 
@@ -45,7 +45,7 @@ public class OfferVO {
     public String toString() {
         return "OfferVO{" +
                 "offerValue='" + offerValue + '\'' +
-                ", reductedPrice='" + reductedPrice + '\'' +
+                ", reducedPrice='" + reducedPrice + '\'' +
                 '}';
     }
 }

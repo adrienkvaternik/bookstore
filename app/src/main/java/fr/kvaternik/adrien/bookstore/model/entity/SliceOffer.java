@@ -13,7 +13,7 @@ public class SliceOffer extends Offer {
     }
 
     @Override
-    public double getPriceAfterApplication(double totalPrice) {
+    public double getReducedPrice(double totalPrice) {
         int quotient = (int) (totalPrice / sliceValue);
         return Math.max(totalPrice - value * quotient, 0);
     }

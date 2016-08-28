@@ -10,7 +10,7 @@ public class MinusOffer extends Offer {
     }
 
     @Override
-    public double getPriceAfterApplication(double totalPrice) {
+    public double getReducedPrice(double totalPrice) {
         return Math.max(totalPrice - value, 0);
     }
 }
