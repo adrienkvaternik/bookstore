@@ -1,6 +1,7 @@
 package fr.kvaternik.adrien.bookstore.view.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.mvpconfigurator.CartMVPConfigurator;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookV0;
+import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
 import fr.kvaternik.adrien.bookstore.view.adapter.CartAdapter;
 
 /**
@@ -59,5 +61,10 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     @Override
     public void attachPresenter(CartMVP.ProvidedPresenterOperations presenter) {
         mPresenter = presenter;
+    }
+
+    @Override
+    public void updateCart(@NonNull CartVO cartVO) {
+        // TODO : impl
     }
 }

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
 
 /**
  * The MVP contract for the cart functionality.
@@ -16,6 +17,11 @@ public interface CartMVP {
      */
     interface RequiredViewOperations extends AttachmentMVP.View<ProvidedPresenterOperations> {
 
+        /**
+         * Updates the cart.
+         * @param cartVO the visual object for the cart
+         */
+        void updateCart(@NonNull CartVO cartVO);
     }
 
     /**
@@ -34,7 +40,7 @@ public interface CartMVP {
     interface RequiredPresenterOperations {
 
         /**
-         * Presents the cart
+         * Presents the cart.
          * @param books the list of {@link Book} to present
          */
         void presentCart(@NonNull List<Book> books);
