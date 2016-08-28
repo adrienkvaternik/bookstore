@@ -9,6 +9,8 @@ import java.util.Locale;
  */
 public class DecimalFormatUtils {
 
+    private DecimalFormatUtils() {}
+
     /**
      * Provides a {@link DecimalFormat} to format euros quantity, with 2 decimals.
      * @return The {@link DecimalFormat} for euros.
