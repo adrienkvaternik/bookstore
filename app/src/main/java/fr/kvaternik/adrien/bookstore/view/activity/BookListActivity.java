@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,8 @@ import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.mvpconfigurator.BookListMVPConfigurator;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
+import fr.kvaternik.adrien.bookstore.router.BookListRouter;
+import fr.kvaternik.adrien.bookstore.router.BookListRouterContract;
 import fr.kvaternik.adrien.bookstore.view.adapter.BookListAdapter;
 
 /**
@@ -23,6 +27,7 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     private BookListMVPConfigurator mConfigurator;
     private BookListMVP.ProvidedPresenterOperations mPresenter;
     private BookListAdapter mAdapter;
+    private BookListRouterContract mRouter;
 
     @BindView(R.id.book_list_recylerview)
     RecyclerView mRecyclerView;
@@ -42,6 +47,9 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
         mConfigurator = new BookListMVPConfigurator();
         mConfigurator.createMVPWithView(this);
 
+        // create router
+        mRouter = new BookListRouter();
+
         // request books to presenter
         mPresenter.requestBooks();
     }
@@ -51,6 +59,22 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
         // destroy MVP with configurator
         mConfigurator.destroyMVPWithPresenter(mPresenter);
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_book_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_cart) {
+            mRouter.navigateToCart(this);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
