@@ -73,7 +73,8 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
                 book.getIsbn(),
                 book.getTitle(),
                 mDecimalFormat.format(book.getPrice()),
-                book.getCover()
+                book.getCover(),
+                book.isAddedToCart()
         );
     }
 }

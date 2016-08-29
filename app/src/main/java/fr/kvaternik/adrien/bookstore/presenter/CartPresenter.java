@@ -112,7 +112,8 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
                 book.getIsbn(),
                 book.getTitle(),
                 mDecimalFormatEuros.format(book.getPrice()),
-                book.getCover()
+                book.getCover(),
+                book.isAddedToCart()
         );
     }
 }

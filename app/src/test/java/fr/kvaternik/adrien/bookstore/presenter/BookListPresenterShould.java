@@ -57,13 +57,13 @@ public class BookListPresenterShould {
 
         // book list creation
         List<Book> books = new ArrayList<>();
-        books.add(new Book(firstIsbn, firstTitle, 35.0, firstCover));
-        books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover));
+        books.add(new Book(firstIsbn, firstTitle, 35.0, firstCover, false));
+        books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover, false));
 
         // expected book VOs list creation
         List<BookVO> expectedBookVOs = new ArrayList<>();
-        expectedBookVOs.add(new BookVO(firstIsbn, firstTitle, "35,00 €", firstCover));
-        expectedBookVOs.add(new BookVO(secondIsbn, secondTitle, "30,00 €", secondCover));
+        expectedBookVOs.add(new BookVO(firstIsbn, firstTitle, "35,00 €", firstCover, false));
+        expectedBookVOs.add(new BookVO(secondIsbn, secondTitle, "30,00 €", secondCover, false));
 
         // action
         mPresenter.presentBooks(books);

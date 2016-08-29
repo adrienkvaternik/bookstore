@@ -61,13 +61,13 @@ public class CartPresenterShould {
 
         // book list creation
         List<Book> books = new ArrayList<>();
-        books.add(new Book(firstIsbn, firstTitle, 35.0, firstCover));
-        books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover));
+        books.add(new Book(firstIsbn, firstTitle, 35.0, firstCover, false));
+        books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover, false));
 
         // book VOs list creation
         List<BookVO> bookVOs = new ArrayList<>();
-        bookVOs.add(new BookVO(firstIsbn, firstTitle, "35,00 €", firstCover));
-        bookVOs.add(new BookVO(secondIsbn, secondTitle, "30,00 €", secondCover));
+        bookVOs.add(new BookVO(firstIsbn, firstTitle, "35,00 €", firstCover, false));
+        bookVOs.add(new BookVO(secondIsbn, secondTitle, "30,00 €", secondCover, false));
 
         // expected cart VO creation
         CartVO expectedCartVO = new CartVO(bookVOs, "65,00 €");

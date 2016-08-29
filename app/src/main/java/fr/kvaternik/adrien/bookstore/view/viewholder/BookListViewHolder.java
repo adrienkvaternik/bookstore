@@ -3,6 +3,8 @@ package fr.kvaternik.adrien.bookstore.view.viewholder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,9 @@ public class BookListViewHolder extends BaseViewHolder {
     @BindView(R.id.cover_imageview)
     ImageView mCoverImageView;
 
+    @BindView(R.id.add_to_cart_checkbox)
+    CheckBox mAddToCartCheckBox;
+
     public BookListViewHolder(View itemView) {
         super(itemView);
     }
@@ -34,12 +39,20 @@ public class BookListViewHolder extends BaseViewHolder {
      * Binds the book VO to the view.
      * @param bookVO the book VO
      */
-    public void bindVO(@NonNull BookVO bookVO) {
+    public void bindVO(@NonNull final BookVO bookVO) {
         mTitleTextView.setText(bookVO.getTitle());
         mPriceTextView.setText(bookVO.getPrice());
         Picasso.with(itemView.getContext())
                 .load(Uri.parse(bookVO.getCover()))
                 .into(mCoverImageView);
         // TODO : add placeholder and error images
+        mAddToCartCheckBox.setChecked(bookVO.isAddedToCart());
+        mAddToCartCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                bookVO.setAddedToCart(isChecked);
+                // TODO : listener
+            }
+        });
     }
 }
