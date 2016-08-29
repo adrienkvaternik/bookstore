@@ -49,7 +49,7 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
 
     @Override
     public void onBookAddedToCart(String isbn) {
-        // TODO : impl
+        mModel.onBookAddedToCart(isbn);
     }
 
     @Override

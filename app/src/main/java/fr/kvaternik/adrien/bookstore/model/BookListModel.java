@@ -39,6 +39,11 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
         });
     }
 
+    @Override
+    public void onBookAddedToCart(String isbn) {
+        // TODO : impl
+    }
+
     public void setService(BookServiceContract service) {
         mService = service;
     }

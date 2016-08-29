@@ -69,5 +69,11 @@ public interface BookListMVP {
          * Provides the books.
          */
         void getBooks();
+
+        /**
+         * Used when the book is added to the cart.
+         * @param isbn the book isbn
+         */
+        void onBookAddedToCart(String isbn);
     }
 }

@@ -71,4 +71,16 @@ public class BookListPresenterShould {
         // assertion
         verify(mMockView).updateBookList(eq(expectedBookVOs));
     }
+
+    @Test
+    public void call_its_model_on_book_added_to_cart() throws Exception {
+        // constants declaration
+        final String isbn = "c8fabf68-8374-48fe-a7ea-a00ccd07afff";
+
+        // action
+        mPresenter.onBookAddedToCart(isbn);
+
+        // assertion
+        verify(mMockModel).onBookAddedToCart(eq(isbn));
+    }
 }
