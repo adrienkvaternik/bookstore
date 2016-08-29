@@ -7,14 +7,13 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 
 /**
- * The cart repository.
+ * The book repository.
  */
-public interface CartRepository {
+public interface BookRepository {
 
     /**
-     * Provides the books in the cart.
-     * @return A list of {@link Book}.
+     * Saves the books in the repository.
+     * @param books the books to save
      */
-    @NonNull
-    List<Book> getCartBooks();
+    void saveBooks(@NonNull List<Book> books);
 }

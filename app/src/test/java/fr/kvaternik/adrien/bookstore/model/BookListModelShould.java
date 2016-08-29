@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
 import fr.kvaternik.adrien.bookstore.model.service.BookServiceContract;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 
@@ -32,15 +33,19 @@ public class BookListModelShould {
     @Mock
     private BookServiceContract mMockService;
 
+    @Mock
+    private BookRepository mMockRepository;
+
     @Before
     public void setUp() throws Exception {
         mModel = new BookListModel();
         mModel.attachPresenter(mMockPresenter);
         mModel.setService(mMockService);
+        mModel.setRepository(mMockRepository);
     }
 
     @Test
-    public void send_books_to_its_presenter_on_fetch_success() throws Exception {
+    public void send_books_to_its_presenter_and_save_them_on_fetch_success() throws Exception {
         // data preparation
         final List<Book> books = new ArrayList<>();
         books.add(new Book("c8fabf68-8374-48fe-a7ea-a00ccd07afff", "Henri Potier à l'école des sorciers", 35.0, "http://henri-potier.xebia.fr/hp0.jpg"));
@@ -58,7 +63,8 @@ public class BookListModelShould {
         // action
         mModel.getBooks();
 
-        // assertion
+        // assertions
+        verify(mMockRepository).saveBooks(eq(books));
         verify(mMockPresenter).presentBooks(eq(books));
     }
 

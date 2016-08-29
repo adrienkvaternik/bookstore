@@ -3,6 +3,7 @@ package fr.kvaternik.adrien.bookstore.mvpconfigurator;
 import android.support.annotation.NonNull;
 
 import fr.kvaternik.adrien.bookstore.model.BookListModel;
+import fr.kvaternik.adrien.bookstore.model.repository.FakeBookRepository;
 import fr.kvaternik.adrien.bookstore.model.service.API.provider.RetrofitAPIProvider;
 import fr.kvaternik.adrien.bookstore.model.service.BookService;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
@@ -27,6 +28,7 @@ public class BookListMVPConfigurator {
         BookService service = new BookService();
         service.setAPIProvider(RetrofitAPIProvider.getInstance());
         model.setService(service);
+        model.setRepository(new FakeBookRepository());
 
         // V -> P
         view.attachPresenter(presenter);
