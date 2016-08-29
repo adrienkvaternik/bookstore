@@ -12,8 +12,8 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
 public interface BookRepository {
 
     /**
-     * Saves the books in the repository.
-     * @param books the books to save
+     * Resets the repository with the specified books.
+     * @param books the books
      */
-    void saveBooks(@NonNull List<Book> books);
+    void resetWithBooks(@NonNull List<Book> books);
 }

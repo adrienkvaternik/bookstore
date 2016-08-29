@@ -28,6 +28,7 @@ public class BookListMVPConfigurator {
         BookService service = new BookService();
         service.setAPIProvider(RetrofitAPIProvider.getInstance());
         model.setService(service);
+        // TODO : use real book repository
         model.setRepository(new FakeBookRepository());
 
         // V -> P

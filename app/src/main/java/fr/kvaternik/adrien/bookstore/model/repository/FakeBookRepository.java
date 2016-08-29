@@ -11,7 +11,7 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
  */
 public class FakeBookRepository implements BookRepository {
     @Override
-    public void saveBooks(@NonNull List<Book> books) {
+    public void resetWithBooks(@NonNull List<Book> books) {
         // do nothing
     }
 }

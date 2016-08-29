@@ -28,7 +28,7 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
         mService.fetchBooks(new BookServiceContract.Callback() {
             @Override
             public void onSuccess(@NonNull List<Book> books) {
-                mRepository.saveBooks(books);
+                mRepository.resetWithBooks(books);
                 mPresenter.presentBooks(books);
             }
 
