@@ -84,4 +84,16 @@ public class BookListModelShould {
         // assertion
         verify(mMockPresenter).presentError();
     }
+
+    @Test
+    public void call_its_repository_on_book_added_to_cart() throws Exception {
+        // constants declaration
+        final String isbn = "c8fabf68-8374-48fe-a7ea-a00ccd07afff";
+
+        // action
+        mModel.addBookToCart(isbn);
+
+        // assertion
+        verify(mMockRepository).addBookToCart(eq(isbn));
+    }
 }

@@ -41,7 +41,7 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
 
     @Override
     public void addBookToCart(String isbn) {
-        // TODO : impl
+        mRepository.addBookToCart(isbn);
     }
 
     @Override

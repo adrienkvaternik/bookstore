@@ -16,4 +16,10 @@ public interface BookRepository {
      * @param books the books
      */
     void resetWithBooks(@NonNull List<Book> books);
+
+    /**
+     * Adds the book to the cart.
+     * @param isbn the book isbn
+     */
+    void addBookToCart(String isbn);
 }

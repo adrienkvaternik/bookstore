@@ -14,4 +14,9 @@ public class FakeBookRepository implements BookRepository {
     public void resetWithBooks(@NonNull List<Book> books) {
         // do nothing
     }
+
+    @Override
+    public void addBookToCart(String isbn) {
+        // do nothing
+    }
 }
