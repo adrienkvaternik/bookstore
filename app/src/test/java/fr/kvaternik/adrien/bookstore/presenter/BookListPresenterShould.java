@@ -57,8 +57,8 @@ public class BookListPresenterShould {
 
         // book list creation
         List<Book> books = new ArrayList<>();
-        books.add(new Book(firstIsbn, firstTitle, 35.0, firstCover, false));
-        books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover, false));
+        books.add(new Book(firstIsbn, firstTitle, 35.0, firstCover));
+        books.add(new Book(secondIsbn, secondTitle, 30.0, secondCover));
 
         // expected book VOs list creation
         List<BookVO> expectedBookVOs = new ArrayList<>();

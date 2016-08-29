@@ -12,29 +12,42 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
  */
 public class MemoryRepository implements BookRepository, CartRepository {
 
+    private List<Book> mBooks = new ArrayList<>();
+    private List<Book> mCart = new ArrayList<>();
+
     // private constructor to prevent external instantiation of singleton
     private MemoryRepository() {}
 
     @Override
     public void resetWithBooks(@NonNull List<Book> books) {
-        // TODO : impl
+        mBooks = books;
+        mCart.clear();
     }
 
     @Override
     public void addBookToCart(String isbn) {
-        // TODO : impl
+        for (Book book : mBooks) {
+            if (isbn.equals(book.getIsbn())) {
+                mCart.add(book);
+                break;
+            }
+        }
     }
 
     @Override
     public void removeBookFromCart(String isbn) {
-        // TODO : impl
+        for (Book book : mCart) {
+            if (isbn.equals(book.getIsbn())) {
+                mCart.remove(book);
+                break;
+            }
+        }
     }
 
     @NonNull
     @Override
     public List<Book> getCartBooks() {
-        // TODO : impl
-        return new ArrayList<>();
+        return mCart;
     }
 
     /**

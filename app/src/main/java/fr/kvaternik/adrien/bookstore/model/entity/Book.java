@@ -9,14 +9,12 @@ public class Book {
     private String title;
     private double price;
     private String cover;
-    private boolean isAddedToCart;
 
-    public Book(String isbn, String title, double price, String cover, boolean isAddedToCart) {
+    public Book(String isbn, String title, double price, String cover) {
         this.isbn = isbn;
         this.title = title;
         this.price = price;
         this.cover = cover;
-        this.isAddedToCart = isAddedToCart;
     }
 
     public String getIsbn() {
@@ -33,9 +31,5 @@ public class Book {
 
     public String getCover() {
         return cover;
-    }
-
-    public boolean isAddedToCart() {
-        return isAddedToCart;
     }
 }
