@@ -46,7 +46,7 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
 
     @Override
     public void removeBookFromCart(String isbn) {
-        // TODO : impl
+        mRepository.removeBookFromCart(isbn);
     }
 
     public void setService(BookServiceContract service) {

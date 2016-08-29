@@ -22,4 +22,10 @@ public interface BookRepository {
      * @param isbn the book isbn
      */
     void addBookToCart(String isbn);
+
+    /**
+     * Removes the book from the cart.
+     * @param isbn the book isbn
+     */
+    void removeBookFromCart(String isbn);
 }

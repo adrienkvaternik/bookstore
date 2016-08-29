@@ -19,4 +19,9 @@ public class FakeBookRepository implements BookRepository {
     public void addBookToCart(String isbn) {
         // do nothing
     }
+
+    @Override
+    public void removeBookFromCart(String isbn) {
+        // do nothing
+    }
 }
