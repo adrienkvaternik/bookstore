@@ -11,6 +11,7 @@ import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
+import fr.kvaternik.adrien.bookstore.view.listener.OnBookAddedToCartChangeListener;
 import fr.kvaternik.adrien.bookstore.view.viewholder.BookListViewHolder;
 
 /**
@@ -19,15 +20,17 @@ import fr.kvaternik.adrien.bookstore.view.viewholder.BookListViewHolder;
 public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder> {
 
     private List<BookVO> mBookVOs = new ArrayList<>();
+    private OnBookAddedToCartChangeListener mListener;
 
-    public BookListAdapter(@NonNull List<BookVO> bookVOs) {
+    public BookListAdapter(@NonNull List<BookVO> bookVOs, OnBookAddedToCartChangeListener mListener) {
         mBookVOs = bookVOs;
+        this.mListener = mListener;
     }
 
     @Override
     public BookListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book_list, parent, false);
-        return new BookListViewHolder(view);
+        return new BookListViewHolder(view, mListener);
     }
 
     @Override

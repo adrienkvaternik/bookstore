@@ -2,6 +2,7 @@ package fr.kvaternik.adrien.bookstore.view.viewholder;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -13,11 +14,14 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
+import fr.kvaternik.adrien.bookstore.view.listener.OnBookAddedToCartChangeListener;
 
 /**
  * The view holder for the book list.
  */
 public class BookListViewHolder extends BaseViewHolder {
+
+    private final OnBookAddedToCartChangeListener mListener;
 
     @BindView(R.id.title_textview)
     TextView mTitleTextView;
@@ -31,8 +35,9 @@ public class BookListViewHolder extends BaseViewHolder {
     @BindView(R.id.add_to_cart_checkbox)
     CheckBox mAddToCartCheckBox;
 
-    public BookListViewHolder(View itemView) {
+    public BookListViewHolder(View itemView, @Nullable OnBookAddedToCartChangeListener mListener) {
         super(itemView);
+        this.mListener = mListener;
     }
 
     /**
@@ -45,13 +50,21 @@ public class BookListViewHolder extends BaseViewHolder {
         Picasso.with(itemView.getContext())
                 .load(Uri.parse(bookVO.getCover()))
                 .into(mCoverImageView);
+
         // TODO : add placeholder and error images
+
         mAddToCartCheckBox.setChecked(bookVO.isAddedToCart());
         mAddToCartCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 bookVO.setAddedToCart(isChecked);
-                // TODO : listener
+                if (mListener != null) {
+                    if (isChecked) {
+                        mListener.onBookAddedToCart(bookVO.getIsbn());
+                    } else {
+                        mListener.onBookRemovedFromCart(bookVO.getIsbn());
+                    }
+                }
             }
         });
     }

@@ -22,7 +22,7 @@ public class BookListAdapterShould {
         bookVOs.add(new BookVO("a460afed-e5e7-4e39-a39d-c885c05db861", "Henri Potier et la Chambre des secrets", "30,00", "http://henri-potier.xebia.fr/hp1.jpg", false));
 
         // action
-        BookListAdapter bookListAdapter = new BookListAdapter(bookVOs);
+        BookListAdapter bookListAdapter = new BookListAdapter(bookVOs, mListener);
 
         // assertion
         assertEquals("The item count is incorrect.", 2, bookListAdapter.getItemCount());

@@ -31,6 +31,18 @@ public interface BookListMVP {
          * Requests the books.
          */
         void requestBooks();
+
+        /**
+         * Used when the book is added to the cart.
+         * @param isbn the book isbn
+         */
+        void onBookAddedToCart(String isbn);
+
+        /**
+         * Used when the book is removed from the cart.
+         * @param isbn the book isbn
+         */
+        void onBookRemovedFromCart(String isbn);
     }
 
     /**

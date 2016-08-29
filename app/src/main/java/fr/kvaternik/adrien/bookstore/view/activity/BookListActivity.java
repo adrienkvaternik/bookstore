@@ -18,11 +18,12 @@ import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.router.BookListRouter;
 import fr.kvaternik.adrien.bookstore.router.BookListRouterContract;
 import fr.kvaternik.adrien.bookstore.view.adapter.BookListAdapter;
+import fr.kvaternik.adrien.bookstore.view.listener.OnBookAddedToCartChangeListener;
 
 /**
  * The book list activity.
  */
-public class BookListActivity extends BaseActivity implements BookListMVP.RequiredViewOperations {
+public class BookListActivity extends BaseActivity implements BookListMVP.RequiredViewOperations, OnBookAddedToCartChangeListener {
 
     private BookListMVPConfigurator mConfigurator;
     private BookListMVP.ProvidedPresenterOperations mPresenter;
@@ -37,7 +38,7 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
         super.onCreate(savedInstanceState);
 
         // setup adapter
-        mAdapter = new BookListAdapter(new ArrayList<BookVO>());
+        mAdapter = new BookListAdapter(new ArrayList<BookVO>(), this);
 
         // setup recyclerview
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -96,5 +97,15 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     @Override
     public void updateBookList(@NonNull List<BookVO> bookVOs) {
         mAdapter.updateData(bookVOs);
+    }
+
+    @Override
+    public void onBookAddedToCart(String isbn) {
+        mPresenter.onBookAddedToCart(isbn);
+    }
+
+    @Override
+    public void onBookRemovedFromCart(String isbn) {
+        mPresenter.onBookRemovedFromCart(isbn);
     }
 }

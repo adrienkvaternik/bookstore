@@ -48,6 +48,16 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
     }
 
     @Override
+    public void onBookAddedToCart(String isbn) {
+        // TODO : impl
+    }
+
+    @Override
+    public void onBookRemovedFromCart(String isbn) {
+        // TODO : impl
+    }
+
+    @Override
     public void presentBooks(@NonNull List<Book> books) {
         List<BookVO> bookVOs = new ArrayList<>();
         for (Book book : books) {
