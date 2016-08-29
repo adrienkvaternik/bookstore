@@ -1,13 +1,9 @@
-package fr.kvaternik.adrien.bookstore.view.fragment;
+package fr.kvaternik.adrien.bookstore.view.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +16,9 @@ import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.view.adapter.BookListAdapter;
 
 /**
- * The fragment used to display the book list.
+ * The book list activity.
  */
-public class BookListFragment extends BaseFragment implements BookListMVP.RequiredViewOperations {
+public class BookListActivity extends BaseActivity implements BookListMVP.RequiredViewOperations {
 
     private BookListMVPConfigurator mConfigurator;
     private BookListMVP.ProvidedPresenterOperations mPresenter;
@@ -31,16 +27,15 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
     @BindView(R.id.book_list_recylerview)
     RecyclerView mRecyclerView;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         // setup adapter
         mAdapter = new BookListAdapter(new ArrayList<BookVO>());
 
         // setup recyclerview
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
         // create MVP with configurator
@@ -49,13 +44,6 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
 
         // request books to presenter
         mPresenter.requestBooks();
-
-        return view;
-    }
-
-    @Override
-    public int getViewId() {
-        return R.layout.fragment_book_list;
     }
 
     @Override
@@ -63,6 +51,11 @@ public class BookListFragment extends BaseFragment implements BookListMVP.Requir
         // destroy MVP with configurator
         mConfigurator.destroyMVPWithPresenter(mPresenter);
         super.onDestroy();
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_book_list;
     }
 
     @Override

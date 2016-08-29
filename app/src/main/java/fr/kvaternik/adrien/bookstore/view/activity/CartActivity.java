@@ -1,13 +1,9 @@
-package fr.kvaternik.adrien.bookstore.view.fragment;
+package fr.kvaternik.adrien.bookstore.view.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,9 +18,9 @@ import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 import fr.kvaternik.adrien.bookstore.view.adapter.CartAdapter;
 
 /**
- * The fragment used to display the cart.
+ * The cart activity.
  */
-public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOperations {
+public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOperations {
 
     private CartMVPConfigurator mConfigurator;
     private CartMVP.ProvidedPresenterOperations mPresenter;
@@ -42,16 +38,15 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     @BindView(R.id.reduced_price_textview)
     TextView mReducedPriceTextView;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         // setup adapter
         mAdapter = new CartAdapter(new ArrayList<BookVO>());
 
         // setup recyclerview
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
         // create MVP with configurator
@@ -63,8 +58,6 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
 
         // request the best offer
         mPresenter.requestBestOffer();
-
-        return view;
     }
 
     @Override
@@ -75,8 +68,8 @@ public class CartFragment extends BaseFragment implements CartMVP.RequiredViewOp
     }
 
     @Override
-    public int getViewId() {
-        return R.layout.fragment_cart;
+    protected int getContentViewId() {
+        return R.layout.activity_cart;
     }
 
     @Override
