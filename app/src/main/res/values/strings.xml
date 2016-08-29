@@ -4,4 +4,8 @@
 
     <!-- Menu -->
     <string name="menu_cart">Panier</string>
+
+    <!-- Title -->
+    <string name="title_library">Bibliothèque</string>
+    <string name="title_cart">Panier</string>
 </resources>
