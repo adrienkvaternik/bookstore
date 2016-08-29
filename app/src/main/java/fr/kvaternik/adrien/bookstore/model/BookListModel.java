@@ -40,7 +40,12 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
     }
 
     @Override
-    public void onBookAddedToCart(String isbn) {
+    public void addBookToCart(String isbn) {
+        // TODO : impl
+    }
+
+    @Override
+    public void removeBookFromCart(String isbn) {
         // TODO : impl
     }
 
