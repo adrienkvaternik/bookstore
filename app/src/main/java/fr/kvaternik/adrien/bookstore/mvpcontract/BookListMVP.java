@@ -26,6 +26,11 @@ public interface BookListMVP {
          * Shows an empty book list.
          */
         void showEmptyBookList();
+
+        /**
+         * Shows an error.
+         */
+        void showError();
     }
 
     /**

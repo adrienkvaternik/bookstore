@@ -105,6 +105,11 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     }
 
     @Override
+    public void showError() {
+        // TODO : impl
+    }
+
+    @Override
     public void onBookAddedToCart(String isbn) {
         mPresenter.onBookAddedToCart(isbn);
     }

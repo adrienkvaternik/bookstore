@@ -104,4 +104,13 @@ public class BookListPresenterShould {
         // assertion
         verify(mMockView).showEmptyBookList();
     }
+
+    @Test
+    public void call_its_view_on_error_presentation() throws Exception {
+        // action
+        mPresenter.presentError();
+
+        // assertion
+        verify(mMockView).showError();
+    }
 }

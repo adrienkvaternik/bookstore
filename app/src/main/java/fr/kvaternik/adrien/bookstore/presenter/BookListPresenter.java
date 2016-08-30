@@ -69,7 +69,7 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
 
     @Override
     public void presentError() {
-        // TODO : impl
+        mView.showError();
     }
 
     @Override
