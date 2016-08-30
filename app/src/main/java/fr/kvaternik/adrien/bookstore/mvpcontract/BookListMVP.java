@@ -23,9 +23,9 @@ public interface BookListMVP {
         void showBooks(@NonNull List<BookVO> bookVOs);
 
         /**
-         * Shows an empty book list.
+         * Shows the absence of book.
          */
-        void showEmptyBookList();
+        void showNoBook();
 
         /**
          * Shows an error.

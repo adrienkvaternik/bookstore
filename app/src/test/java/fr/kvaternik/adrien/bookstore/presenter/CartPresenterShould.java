@@ -80,6 +80,24 @@ public class CartPresenterShould {
     }
 
     @Test
+    public void call_its_view_on_no_offer_presentation() throws Exception {
+        // action
+        mPresenter.presentNoOffer();
+
+        // assertion
+        verify(mMockView).showNoOffer();
+    }
+
+    @Test
+    public void call_its_view_on_error_presentation() throws Exception {
+        // action
+        mPresenter.presentOfferError();
+
+        // assertion
+        verify(mMockView).showError();
+    }
+
+    @Test
     public void call_its_model_on_best_offer_request() throws Exception {
         // action
         mPresenter.requestBestOffer();

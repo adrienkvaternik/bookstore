@@ -30,6 +30,16 @@ public interface CartMVP {
          * @param offerVO the visual object for the offer
          */
         void showOffer(@NonNull OfferVO offerVO);
+
+        /**
+         * Shows the absence of offer.
+         */
+        void showNoOffer();
+
+        /**
+         * Shows an error.
+         */
+        void showError();
     }
 
     /**

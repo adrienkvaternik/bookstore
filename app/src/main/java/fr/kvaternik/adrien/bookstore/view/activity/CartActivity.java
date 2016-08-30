@@ -94,4 +94,14 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
         mOfferValueTextView.setText(offerVO.getOfferValue());
         mReducedPriceTextView.setText(offerVO.getReducedPrice());
     }
+
+    @Override
+    public void showNoOffer() {
+        // TODO : impl
+    }
+
+    @Override
+    public void showError() {
+        // TODO : impl
+    }
 }

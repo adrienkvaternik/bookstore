@@ -100,7 +100,7 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     }
 
     @Override
-    public void showEmptyBookList() {
+    public void showNoBook() {
         // TODO : impl
     }
 

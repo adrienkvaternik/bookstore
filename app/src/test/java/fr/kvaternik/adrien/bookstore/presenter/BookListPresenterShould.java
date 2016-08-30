@@ -73,6 +73,24 @@ public class BookListPresenterShould {
     }
 
     @Test
+    public void call_its_view_on_no_book_presentation() throws Exception {
+        // action
+        mPresenter.presentNoBook();
+
+        // assertion
+        verify(mMockView).showNoBook();
+    }
+
+    @Test
+    public void call_its_view_on_error_presentation() throws Exception {
+        // action
+        mPresenter.presentError();
+
+        // assertion
+        verify(mMockView).showError();
+    }
+
+    @Test
     public void call_its_model_on_book_added_to_cart() throws Exception {
         // constants declaration
         final String isbn = "c8fabf68-8374-48fe-a7ea-a00ccd07afff";
@@ -94,23 +112,5 @@ public class BookListPresenterShould {
 
         // assertion
         verify(mMockModel).removeBookFromCart(eq(isbn));
-    }
-
-    @Test
-    public void call_its_view_on_no_book_presentation() throws Exception {
-        // action
-        mPresenter.presentNoBook();
-
-        // assertion
-        verify(mMockView).showEmptyBookList();
-    }
-
-    @Test
-    public void call_its_view_on_error_presentation() throws Exception {
-        // action
-        mPresenter.presentError();
-
-        // assertion
-        verify(mMockView).showError();
     }
 }

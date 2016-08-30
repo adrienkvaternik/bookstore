@@ -74,7 +74,7 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
 
     @Override
     public void presentNoBook() {
-        mView.showEmptyBookList();
+        mView.showNoBook();
     }
 
     /**

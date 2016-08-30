@@ -93,12 +93,12 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
 
     @Override
     public void presentNoOffer() {
-        // TODO : impl
+        mView.showNoOffer();
     }
 
     @Override
     public void presentOfferError() {
-        // TODO : impl
+        mView.showError();
     }
 
     /**
