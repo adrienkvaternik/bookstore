@@ -29,6 +29,12 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     private CartMVP.ProvidedPresenterOperations mPresenter;
     private CartAdapter mAdapter;
 
+    @BindView(R.id.cart_layout)
+    View mCartLayout;
+
+    @BindView(R.id.empty_cart_view)
+    View mEmptyCartView;
+
     @BindView(R.id.cart_recylerview)
     RecyclerView mRecyclerView;
 
@@ -47,6 +53,9 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // display empty cart view
+        displayEmptyCartView();
 
         // hide offer layout
         hideOfferLayout();
@@ -92,17 +101,16 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
         mPresenter = presenter;
     }
 
-    // TODO : add showEmptyCart
-
     @Override
     public void showCart(@NonNull CartVO cartVO) {
+        displayCartLayout();
         mAdapter.updateData(cartVO.getBookVOs());
         mTotalPriceTextView.setText(cartVO.getTotalPrice());
     }
 
     @Override
     public void showEmptyCart() {
-        // TODO : impl
+        displayEmptyCartView();
     }
 
     @Override
@@ -151,5 +159,21 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
      */
     private void displayOfferLayout() {
         mOfferLayout.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Displays the cart layout.
+     */
+    private void displayCartLayout() {
+        mEmptyCartView.setVisibility(View.GONE);
+        mCartLayout.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Displays the cart layout.
+     */
+    private void displayEmptyCartView() {
+        mCartLayout.setVisibility(View.GONE);
+        mEmptyCartView.setVisibility(View.VISIBLE);
     }
 }
