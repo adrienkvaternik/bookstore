@@ -1,7 +1,9 @@
 package fr.kvaternik.adrien.bookstore.view.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -102,6 +104,23 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
 
     @Override
     public void showError() {
-        // TODO : impl
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.error_title)
+                .setMessage(R.string.error_message_offer)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User accepts retry
+                        mPresenter.requestBestOffer();
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        // User refuses retry
+                    }
+                })
+                .create()
+                .show();
     }
 }

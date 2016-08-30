@@ -8,4 +8,11 @@
     <!-- Title -->
     <string name="title_library">Bibliothèque</string>
     <string name="title_cart">Panier</string>
+
+    <!-- Dialog -->
+    <string name="error_title">Erreur</string>
+    <string name="error_message_books">Une erreur est survenue lors du chargement des livres.\nRéessayer ?</string>
+    <string name="error_message_offer">Une erreur est survenue lors du chargement de l\'offre.\nRéessayer ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 </resources>
