@@ -93,12 +93,6 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
         return R.layout.activity_book_list;
     }
 
-    @NonNull
-    @Override
-    protected String getActivityTitle() {
-        return getString(R.string.title_library);
-    }
-
     @Override
     public void attachPresenter(BookListMVP.ProvidedPresenterOperations presenter) {
         mPresenter = presenter;

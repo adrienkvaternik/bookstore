@@ -18,20 +18,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract int getContentViewId();
 
-    /**
-     * Provides the activity title.
-     * @return The activity title.
-     */
-    @NonNull
-    protected abstract String getActivityTitle();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set content view
         setContentView(getContentViewId());
-        // set title
-        setTitle(getActivityTitle());
         // ButterKnife binding
         ButterKnife.bind(this);
     }

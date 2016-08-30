@@ -90,12 +90,6 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
         return R.layout.activity_cart;
     }
 
-    @NonNull
-    @Override
-    protected String getActivityTitle() {
-        return getString(R.string.title_cart);
-    }
-
     @Override
     public void attachPresenter(CartMVP.ProvidedPresenterOperations presenter) {
         mPresenter = presenter;
