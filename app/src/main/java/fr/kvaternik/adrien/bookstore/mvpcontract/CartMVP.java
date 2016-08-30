@@ -26,6 +26,11 @@ public interface CartMVP {
         void showCart(@NonNull CartVO cartVO);
 
         /**
+         * Shows an empty cart.
+         */
+        void showEmptyCart();
+
+        /**
          * Shows the offer.
          * @param offerVO the visual object for the offer
          */

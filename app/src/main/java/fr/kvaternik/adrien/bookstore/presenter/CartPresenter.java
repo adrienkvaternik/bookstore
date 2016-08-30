@@ -71,7 +71,7 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
 
     @Override
     public void presentEmptyCart() {
-        // TODO : impl
+        mView.showEmptyCart();
     }
 
     @Override

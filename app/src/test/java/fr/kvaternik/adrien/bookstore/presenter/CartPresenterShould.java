@@ -80,6 +80,15 @@ public class CartPresenterShould {
     }
 
     @Test
+    public void call_its_view_on_empty_cart() throws Exception {
+        // action
+        mPresenter.presentEmptyCart();
+
+        // assertion
+        verify(mMockView).showEmptyCart();
+    }
+
+    @Test
     public void call_its_view_on_no_offer_presentation() throws Exception {
         // action
         mPresenter.presentNoOffer();

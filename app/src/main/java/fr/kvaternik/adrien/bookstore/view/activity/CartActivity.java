@@ -101,6 +101,11 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     }
 
     @Override
+    public void showEmptyCart() {
+        // TODO : impl
+    }
+
+    @Override
     public void showOffer(@NonNull OfferVO offerVO) {
         displayOfferLayout();
         mOfferValueTextView.setText(offerVO.getOfferValue());
