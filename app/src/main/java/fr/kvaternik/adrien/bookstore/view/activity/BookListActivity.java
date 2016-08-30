@@ -95,8 +95,13 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     }
 
     @Override
-    public void updateBookList(@NonNull List<BookVO> bookVOs) {
+    public void showBooks(@NonNull List<BookVO> bookVOs) {
         mAdapter.updateData(bookVOs);
+    }
+
+    @Override
+    public void showEmptyBookList() {
+        // TODO : impl
     }
 
     @Override

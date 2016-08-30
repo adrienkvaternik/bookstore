@@ -64,7 +64,7 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
             bookVOs.add(convertBookToBookVO(book));
         }
 
-        mView.updateBookList(bookVOs);
+        mView.showBooks(bookVOs);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
 
     @Override
     public void presentNoBook() {
-        // TODO : impl
+        mView.showEmptyBookList();
     }
 
     /**

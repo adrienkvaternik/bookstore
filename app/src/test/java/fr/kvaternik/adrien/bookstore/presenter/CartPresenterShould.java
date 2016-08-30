@@ -76,7 +76,7 @@ public class CartPresenterShould {
         mPresenter.presentCart(books, 65.0);
 
         // assertion
-        verify(mMockView).updateCart(eq(expectedCartVO));
+        verify(mMockView).showCart(eq(expectedCartVO));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class CartPresenterShould {
         mPresenter.presentBestOffer(new MinusOffer(20), 80.0);
 
         // assertion
-        verify(mMockView).updateOffer(expectedOfferVO);
+        verify(mMockView).showOffer(expectedOfferVO);
     }
 
     @Test
@@ -109,6 +109,6 @@ public class CartPresenterShould {
         mPresenter.presentBestOffer(new PercentageOffer(20), 80.0);
 
         // assertion
-        verify(mMockView).updateOffer(expectedOfferVO);
+        verify(mMockView).showOffer(expectedOfferVO);
     }
 }

@@ -17,10 +17,15 @@ public interface BookListMVP {
      */
     interface RequiredViewOperations extends AttachmentMVP.View<ProvidedPresenterOperations> {
         /**
-         * Updates the book list.
+         * Shows the books.
          * @param bookVOs the list of visual objects for the books
          */
-        void updateBookList(@NonNull List<BookVO> bookVOs);
+        void showBooks(@NonNull List<BookVO> bookVOs);
+
+        /**
+         * Shows an empty book list.
+         */
+        void showEmptyBookList();
     }
 
     /**

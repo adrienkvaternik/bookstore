@@ -84,13 +84,13 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     }
 
     @Override
-    public void updateCart(@NonNull CartVO cartVO) {
+    public void showCart(@NonNull CartVO cartVO) {
         mAdapter.updateData(cartVO.getBookVOs());
         mTotalPriceTextView.setText(cartVO.getTotalPrice());
     }
 
     @Override
-    public void updateOffer(@NonNull OfferVO offerVO) {
+    public void showOffer(@NonNull OfferVO offerVO) {
         mOfferValueTextView.setText(offerVO.getOfferValue());
         mReducedPriceTextView.setText(offerVO.getReducedPrice());
     }

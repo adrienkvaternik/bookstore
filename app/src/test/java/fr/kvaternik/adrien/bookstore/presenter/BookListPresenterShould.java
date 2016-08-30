@@ -69,7 +69,7 @@ public class BookListPresenterShould {
         mPresenter.presentBooks(books);
 
         // assertion
-        verify(mMockView).updateBookList(eq(expectedBookVOs));
+        verify(mMockView).showBooks(eq(expectedBookVOs));
     }
 
     @Test
@@ -94,5 +94,14 @@ public class BookListPresenterShould {
 
         // assertion
         verify(mMockModel).removeBookFromCart(eq(isbn));
+    }
+
+    @Test
+    public void call_its_view_on_no_book_presentation() throws Exception {
+        // action
+        mPresenter.presentNoBook();
+
+        // assertion
+        verify(mMockView).showEmptyBookList();
     }
 }

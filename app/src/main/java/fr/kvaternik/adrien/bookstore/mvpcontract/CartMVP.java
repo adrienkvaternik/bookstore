@@ -20,16 +20,16 @@ public interface CartMVP {
     interface RequiredViewOperations extends AttachmentMVP.View<ProvidedPresenterOperations> {
 
         /**
-         * Updates the cart.
+         * Shows the cart.
          * @param cartVO the visual object for the cart
          */
-        void updateCart(@NonNull CartVO cartVO);
+        void showCart(@NonNull CartVO cartVO);
 
         /**
-         * Update the offer.
+         * Shows the offer.
          * @param offerVO the visual object for the offer
          */
-        void updateOffer(@NonNull OfferVO offerVO);
+        void showOffer(@NonNull OfferVO offerVO);
     }
 
     /**

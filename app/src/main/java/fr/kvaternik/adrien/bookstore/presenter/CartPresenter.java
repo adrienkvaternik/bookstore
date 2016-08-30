@@ -66,7 +66,7 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
             bookVOs.add(convertBookToBookVO(book));
         }
 
-        mView.updateCart(new CartVO(bookVOs, mDecimalFormatEuros.format(totalPrice)));
+        mView.showCart(new CartVO(bookVOs, mDecimalFormatEuros.format(totalPrice)));
     }
 
     @Override
@@ -88,7 +88,7 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
                 throw new IllegalStateException("Unknown offer unit : " + offerUnit);
         }
 
-        mView.updateOffer(new OfferVO(decimalFormat.format(bestOffer.getValue() * multiplier), mDecimalFormatEuros.format(reducedPrice)));
+        mView.showOffer(new OfferVO(decimalFormat.format(bestOffer.getValue() * multiplier), mDecimalFormatEuros.format(reducedPrice)));
     }
 
     @Override
