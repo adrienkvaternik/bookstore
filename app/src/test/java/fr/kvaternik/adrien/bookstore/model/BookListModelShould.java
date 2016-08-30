@@ -108,4 +108,26 @@ public class BookListModelShould {
         // assertion
         verify(mMockRepository).removeBookFromCart(eq(isbn));
     }
+
+    @Test
+    public void send_no_book_to_its_presenter_and_reset_its_repository_when_no_book_fetched() throws Exception {
+        // data preparation
+        final List<Book> books = new ArrayList<>();
+
+        // stub service
+        doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) throws Throwable {
+                ((BookServiceContract.Callback) invocation.getArguments()[0]).onSuccess(books);
+                return null;
+            }
+        }).when(mMockService).fetchBooks(isA(BookServiceContract.Callback.class));
+
+        // action
+        mModel.getBooks();
+
+        // assertions
+        verify(mMockRepository).resetWithBooks(eq(books));
+        verify(mMockPresenter).presentNoBook();
+    }
 }

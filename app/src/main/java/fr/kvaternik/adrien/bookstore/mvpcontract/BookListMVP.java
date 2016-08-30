@@ -59,6 +59,11 @@ public interface BookListMVP {
          * Presents an error.
          */
         void presentError();
+
+        /**
+         * Presents the absence of book.
+         */
+        void presentNoBook();
     }
 
     /**

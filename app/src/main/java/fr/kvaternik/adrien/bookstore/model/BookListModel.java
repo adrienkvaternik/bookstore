@@ -29,7 +29,11 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
             @Override
             public void onSuccess(@NonNull List<Book> books) {
                 mRepository.resetWithBooks(books);
-                mPresenter.presentBooks(books);
+                if (!books.isEmpty()) {
+                    mPresenter.presentBooks(books);
+                } else {
+                    mPresenter.presentNoBook();
+                }
             }
 
             @Override

@@ -72,6 +72,11 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
         // TODO : impl
     }
 
+    @Override
+    public void presentNoBook() {
+        // TODO : impl
+    }
+
     /**
      * Converts a {@link Book} into a {@link BookVO}.
      * @param book the book to convert.
