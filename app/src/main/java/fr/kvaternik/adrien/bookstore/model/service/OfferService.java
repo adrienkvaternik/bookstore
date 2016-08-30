@@ -9,6 +9,7 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.model.service.API.OfferAPI;
 import fr.kvaternik.adrien.bookstore.model.service.API.provider.OfferAPIProvider;
+import fr.kvaternik.adrien.bookstore.model.service.callback.Callback;
 import fr.kvaternik.adrien.bookstore.utils.StringUtils;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -16,36 +17,15 @@ import retrofit2.Response;
 /**
  * The service providing the offers.
  */
-public class OfferService implements OfferServiceContract {
+public class OfferService extends BaseService implements OfferServiceContract {
 
     private OfferAPIProvider mAPIProvider;
 
     @Override
-    public void fetchOffers(@NonNull List<String> isbnList, @Nullable final Callback callback) {
+    public void fetchOffers(@NonNull List<String> isbnList, @Nullable final Callback<List<Offer>> callback) {
         OfferAPI offerAPI = mAPIProvider.getOfferAPI();
-
         String url = getFetchOffersUrlFromIsbnList(isbnList);
-        offerAPI.fetchOffers(url).enqueue(new retrofit2.Callback<List<Offer>>() {
-            @Override
-            public void onResponse(Call<List<Offer>> call, Response<List<Offer>> response) {
-                if (response == null || !response.isSuccessful()) {
-                    if (callback != null) {
-                        callback.onFailure();
-                    }
-                } else {
-                    if (callback != null) {
-                        callback.onSuccess(response.body());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Offer>> call, Throwable t) {
-                if (callback != null) {
-                    callback.onFailure();
-                }
-            }
-        });
+        enqueueCall(offerAPI.fetchOffers(url), callback);
     }
 
     public void setAPIProvider(OfferAPIProvider apiProvider) {

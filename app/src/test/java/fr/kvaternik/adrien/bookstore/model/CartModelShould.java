@@ -17,6 +17,7 @@ import fr.kvaternik.adrien.bookstore.model.entity.MinusOffer;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.model.repository.CartRepository;
 import fr.kvaternik.adrien.bookstore.model.service.OfferServiceContract;
+import fr.kvaternik.adrien.bookstore.model.service.callback.Callback;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
 import static org.mockito.Mockito.*;
@@ -24,6 +25,7 @@ import static org.mockito.Mockito.*;
 /**
  * Tests for {@link CartModel}.
  */
+@SuppressWarnings("unchecked") // remove unchecked warnings due to invocations cast and Mockito.isA class parameter
 @RunWith(MockitoJUnitRunner.class)
 public class CartModelShould {
 
@@ -104,10 +106,10 @@ public class CartModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((OfferServiceContract.Callback) invocation.getArguments()[1]).onSuccess(offers);
+                ((Callback<List<Offer>>) invocation.getArguments()[1]).onSuccess(offers);
                 return null;
             }
-        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(OfferServiceContract.Callback.class));
+        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(Callback.class));
 
         // action
         mModel.getBestOffer();
@@ -143,10 +145,10 @@ public class CartModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((OfferServiceContract.Callback) invocation.getArguments()[1]).onSuccess(offers);
+                ((Callback<List<Offer>>) invocation.getArguments()[1]).onSuccess(offers);
                 return null;
             }
-        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(OfferServiceContract.Callback.class));
+        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(Callback.class));
 
         // action
         mModel.getBestOffer();
@@ -169,10 +171,10 @@ public class CartModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((OfferServiceContract.Callback) invocation.getArguments()[1]).onFailure();
+                ((Callback<List<Offer>>) invocation.getArguments()[1]).onFailure();
                 return null;
             }
-        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(OfferServiceContract.Callback.class));
+        }).when(mMockService).fetchOffers(anyListOf(String.class), isA(Callback.class));
 
         // action
         mModel.getBestOffer();

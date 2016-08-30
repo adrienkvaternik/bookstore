@@ -7,6 +7,7 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
 import fr.kvaternik.adrien.bookstore.model.service.BookServiceContract;
+import fr.kvaternik.adrien.bookstore.model.service.callback.Callback;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 
 /**
@@ -25,7 +26,7 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
 
     @Override
     public void getBooks() {
-        mService.fetchBooks(new BookServiceContract.Callback() {
+        mService.fetchBooks(new Callback<List<Book>>() {
             @Override
             public void onSuccess(@NonNull List<Book> books) {
                 mRepository.resetWithBooks(books);

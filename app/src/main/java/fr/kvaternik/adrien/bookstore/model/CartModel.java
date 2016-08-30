@@ -10,6 +10,7 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.model.repository.CartRepository;
 import fr.kvaternik.adrien.bookstore.model.service.OfferServiceContract;
+import fr.kvaternik.adrien.bookstore.model.service.callback.Callback;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 
 /**
@@ -57,7 +58,7 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
         if (!books.isEmpty()) {
             List<String> isbnList = getIsbnListFromBooks(books);
 
-            mService.fetchOffers(isbnList, new OfferServiceContract.Callback() {
+            mService.fetchOffers(isbnList, new Callback<List<Offer>>() {
                 @Override
                 public void onSuccess(@NonNull List<Offer> offers) {
                     List<Book> books = getBooksInCartFromRepository();

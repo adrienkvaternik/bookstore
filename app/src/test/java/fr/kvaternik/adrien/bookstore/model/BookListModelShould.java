@@ -14,6 +14,7 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.repository.BookRepository;
 import fr.kvaternik.adrien.bookstore.model.service.BookServiceContract;
+import fr.kvaternik.adrien.bookstore.model.service.callback.Callback;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 
 import static org.mockito.Mockito.*;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.*;
 /**
  * Tests for {@link BookListModel}.
  */
+@SuppressWarnings("unchecked") // remove unchecked warnings due to invocations cast and Mockito.isA class parameter
 @RunWith(MockitoJUnitRunner.class)
 public class BookListModelShould {
 
@@ -54,10 +56,10 @@ public class BookListModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((BookServiceContract.Callback) invocation.getArguments()[0]).onSuccess(books);
+                ((Callback<List<Book>>) invocation.getArguments()[0]).onSuccess(books);
                 return null;
             }
-        }).when(mMockService).fetchBooks(isA(BookServiceContract.Callback.class));
+        }).when(mMockService).fetchBooks(isA(Callback.class));
 
         // action
         mModel.getBooks();
@@ -73,10 +75,10 @@ public class BookListModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((BookServiceContract.Callback) invocation.getArguments()[0]).onFailure();
+                ((Callback<List<Book>>) invocation.getArguments()[0]).onFailure();
                 return null;
             }
-        }).when(mMockService).fetchBooks(isA(BookServiceContract.Callback.class));
+        }).when(mMockService).fetchBooks(isA(Callback.class));
 
         // action
         mModel.getBooks();
@@ -118,10 +120,10 @@ public class BookListModelShould {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                ((BookServiceContract.Callback) invocation.getArguments()[0]).onSuccess(books);
+                ((Callback<List<Book>>) invocation.getArguments()[0]).onSuccess(books);
                 return null;
             }
-        }).when(mMockService).fetchBooks(isA(BookServiceContract.Callback.class));
+        }).when(mMockService).fetchBooks(isA(Callback.class));
 
         // action
         mModel.getBooks();
