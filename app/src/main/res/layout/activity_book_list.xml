@@ -5,9 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.BookListActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/book_list_recylerview"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/book_list_recylerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/no_book_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/empty_library"
+            android:visibility="gone"/>
+
+    </FrameLayout>
 
 </RelativeLayout>

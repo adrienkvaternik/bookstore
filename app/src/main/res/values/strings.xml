@@ -15,4 +15,9 @@
     <string name="error_message_offer">Une erreur est survenue lors du chargement de l\'offre.\nRéessayer ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+
+    <!-- Library -->
+    <string name="empty_library">La bibliothèque est vide.</string>
+
+
 </resources>

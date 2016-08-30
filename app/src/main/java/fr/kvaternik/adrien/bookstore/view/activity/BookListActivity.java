@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.mvpconfigurator.BookListMVPConfigurator;
+import fr.kvaternik.adrien.bookstore.mvpcontract.AttachmentMVP;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.router.BookListRouter;
@@ -32,12 +34,18 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     private BookListAdapter mAdapter;
     private BookListRouterContract mRouter;
 
+    @BindView(R.id.no_book_view)
+    View mNoBookView;
+
     @BindView(R.id.book_list_recylerview)
     RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // display no book layout
+        displayNoBookLayout();
 
         // setup adapter
         mAdapter = new BookListAdapter(new ArrayList<BookVO>(), this);
@@ -98,12 +106,14 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
 
     @Override
     public void showBooks(@NonNull List<BookVO> bookVOs) {
+        displayBookListLayout();
         mAdapter.updateData(bookVOs);
     }
 
     @Override
     public void showNoBook() {
-        // TODO : impl
+        displayNoBookLayout();
+        mAdapter.updateData(new ArrayList<BookVO>());
     }
 
     @Override
@@ -136,5 +146,21 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     @Override
     public void onBookRemovedFromCart(String isbn) {
         mPresenter.onBookRemovedFromCart(isbn);
+    }
+
+    /**
+     * Displays the book list layout.
+     */
+    private void displayBookListLayout() {
+        mNoBookView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Displays the no book layout.
+     */
+    private void displayNoBookLayout() {
+        mRecyclerView.setVisibility(View.GONE);
+        mNoBookView.setVisibility(View.VISIBLE);
     }
 }
