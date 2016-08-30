@@ -49,6 +49,9 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
     @Override
     public void getBestOffer() {
         List<Book> books = getBooksInCartFromRepository();
+
+        // TODO : add case books empty
+        
         List<String> isbnList = getIsbnListFromBooks(books);
 
         mService.fetchOffers(isbnList, new OfferServiceContract.Callback() {

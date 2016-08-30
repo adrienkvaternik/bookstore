@@ -19,5 +19,10 @@
     <!-- Library -->
     <string name="empty_library">La bibliothèque est vide.</string>
 
+    <!-- Cart -->
+    <string name="total">Total :</string>
+    <string name="discount">Remise :</string>
+    <string name="total_after_discount">Total après remise :</string>
+    <string name="empty_cart">Le panier est vide.</string>
 
 </resources>

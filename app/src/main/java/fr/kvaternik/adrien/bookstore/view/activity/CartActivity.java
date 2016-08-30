@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,6 +35,9 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     @BindView(R.id.total_price_textview)
     TextView mTotalPriceTextView;
 
+    @BindView(R.id.offer_layout)
+    View mOfferLayout;
+
     @BindView(R.id.offer_value_textview)
     TextView mOfferValueTextView;
 
@@ -43,6 +47,9 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // hide offer layout
+        hideOfferLayout();
 
         // setup adapter
         mAdapter = new CartAdapter(new ArrayList<BookVO>());
@@ -85,6 +92,8 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
         mPresenter = presenter;
     }
 
+    // TODO : add showEmptyCart
+
     @Override
     public void showCart(@NonNull CartVO cartVO) {
         mAdapter.updateData(cartVO.getBookVOs());
@@ -93,13 +102,14 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
 
     @Override
     public void showOffer(@NonNull OfferVO offerVO) {
+        displayOfferLayout();
         mOfferValueTextView.setText(offerVO.getOfferValue());
         mReducedPriceTextView.setText(offerVO.getReducedPrice());
     }
 
     @Override
     public void showNoOffer() {
-        // TODO : impl
+        hideOfferLayout();
     }
 
     @Override
@@ -122,5 +132,19 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
                 })
                 .create()
                 .show();
+    }
+
+    /**
+     * Hides the offer layout.
+     */
+    private void hideOfferLayout() {
+        mOfferLayout.setVisibility(View.GONE);
+    }
+
+    /**
+     * Displays the offer layout.
+     */
+    private void displayOfferLayout() {
+        mOfferLayout.setVisibility(View.VISIBLE);
     }
 }
