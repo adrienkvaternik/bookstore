@@ -42,14 +42,18 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
     @Override
     public void getCart() {
         List<Book> books = getBooksInCartFromRepository();
-        double totalPrice = getTotalPriceForBooks(books);
-        mPresenter.presentCart(books, totalPrice);
+        if (!books.isEmpty()) {
+            double totalPrice = getTotalPriceForBooks(books);
+            mPresenter.presentCart(books, totalPrice);
+        } else {
+            mPresenter.presentEmptyCart();
+        }
     }
 
     @Override
     public void getBestOffer() {
         List<Book> books = getBooksInCartFromRepository();
-        
+
         if (!books.isEmpty()) {
             List<String> isbnList = getIsbnListFromBooks(books);
 

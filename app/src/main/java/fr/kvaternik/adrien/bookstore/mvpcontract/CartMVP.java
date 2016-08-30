@@ -70,6 +70,11 @@ public interface CartMVP {
         void presentCart(@NonNull List<Book> books, double totalPrice);
 
         /**
+         * Presents an empty cart.
+         */
+        void presentEmptyCart();
+
+        /**
          * Presents the best offer.
          * @param bestOffer the best offer
          * @param reducedPrice the reduced price

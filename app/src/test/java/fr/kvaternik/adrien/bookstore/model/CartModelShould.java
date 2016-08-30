@@ -68,6 +68,21 @@ public class CartModelShould {
     }
 
     @Test
+    public void send_empty_cart_to_its_presenter_when_no_book_in_cart() throws Exception {
+        // data preparation
+        final List<Book> books = new ArrayList<>();
+
+        // stub repository
+        when(mMockRepository.getCartBooks()).thenReturn(books);
+
+        // action
+        mModel.getCart();
+
+        // assertion
+        verify(mMockPresenter).presentEmptyCart();
+    }
+
+    @Test
     public void send_the_best_offer_to_its_presenter_on_fetch_success() throws Exception {
         // books preparation
         List<Book> books = new ArrayList<>();
