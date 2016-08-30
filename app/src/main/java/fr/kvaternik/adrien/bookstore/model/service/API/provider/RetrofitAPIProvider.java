@@ -39,7 +39,7 @@ public class RetrofitAPIProvider implements BookAPIProvider, OfferAPIProvider {
     @Override
     public BookAPI getBookAPI() {
         if (mBookAPI == null) {
-            mBookAPI = createBookAPI();
+            mBookAPI = createAPI(BookAPI.class);
         }
         return mBookAPI;
     }
@@ -47,7 +47,7 @@ public class RetrofitAPIProvider implements BookAPIProvider, OfferAPIProvider {
     @Override
     public OfferAPI getOfferAPI() {
         if (mOfferAPI == null) {
-            mOfferAPI = createOfferAPI();
+            mOfferAPI = createAPI(OfferAPI.class);
         }
         return mOfferAPI;
     }
@@ -62,27 +62,16 @@ public class RetrofitAPIProvider implements BookAPIProvider, OfferAPIProvider {
     }
 
     /**
-     * Creates a book API.
-     * @return A new instance of {@link BookAPI}.
+     * Creates an API of the specified type class.
+     * @param clazz the API type class
+     * @param <T> the API type
+     * @return A new API instance.
      */
-    @NonNull
-    private BookAPI createBookAPI() {
+    private <T> T createAPI(Class<T> clazz) {
         if (mRetrofit == null) {
             mRetrofit = createRetrofit();
         }
-        return mRetrofit.create(BookAPI.class);
-    }
-
-    /**
-     * Creates a offer API.
-     * @return A new instance of {@link OfferAPI}.
-     */
-    @NonNull
-    private OfferAPI createOfferAPI() {
-        if (mRetrofit == null) {
-            mRetrofit = createRetrofit();
-        }
-        return mRetrofit.create(OfferAPI.class);
+        return mRetrofit.create(clazz);
     }
 
     /**
