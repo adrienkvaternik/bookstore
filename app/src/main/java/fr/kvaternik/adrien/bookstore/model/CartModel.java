@@ -49,29 +49,31 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
     @Override
     public void getBestOffer() {
         List<Book> books = getBooksInCartFromRepository();
-
-        // TODO : add case books empty
         
-        List<String> isbnList = getIsbnListFromBooks(books);
+        if (!books.isEmpty()) {
+            List<String> isbnList = getIsbnListFromBooks(books);
 
-        mService.fetchOffers(isbnList, new OfferServiceContract.Callback() {
-            @Override
-            public void onSuccess(@NonNull List<Offer> offers) {
-                List<Book> books = getBooksInCartFromRepository();
-                double totalPrice = getTotalPriceForBooks(books);
-                Offer bestOffer = mOfferOptimizer.getBestOffer(offers, totalPrice);
-                if (bestOffer != null) {
-                    mPresenter.presentBestOffer(bestOffer, bestOffer.getReducedPrice(totalPrice));
-                } else {
-                    mPresenter.presentNoOffer();
+            mService.fetchOffers(isbnList, new OfferServiceContract.Callback() {
+                @Override
+                public void onSuccess(@NonNull List<Offer> offers) {
+                    List<Book> books = getBooksInCartFromRepository();
+                    double totalPrice = getTotalPriceForBooks(books);
+                    Offer bestOffer = mOfferOptimizer.getBestOffer(offers, totalPrice);
+                    if (bestOffer != null) {
+                        mPresenter.presentBestOffer(bestOffer, bestOffer.getReducedPrice(totalPrice));
+                    } else {
+                        mPresenter.presentNoOffer();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure() {
-                mPresenter.presentOfferError();
-            }
-        });
+                @Override
+                public void onFailure() {
+                    mPresenter.presentOfferError();
+                }
+            });
+        } else {
+            mPresenter.presentNoOffer();
+        }
     }
 
     /**
