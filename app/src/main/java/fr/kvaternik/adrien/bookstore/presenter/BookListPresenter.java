@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
+import fr.kvaternik.adrien.bookstore.model.mapper.BookToBookVOMapper;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
@@ -16,8 +17,8 @@ import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
  */
 public class BookListPresenter implements BookListMVP.ProvidedPresenterOperations, BookListMVP.RequiredPresenterOperations {
 
-    /** Decimal formatter with 2 decimals, in euros, used to convert a {@link Book} into a {@link BookVO}, see method {@link #convertBookToBookVO(Book)} */
-    private DecimalFormat mDecimalFormat = DecimalFormatUtils.decimalFormatEuros();
+    /** Decimal formatter with 2 decimals, in euros */
+    private DecimalFormat mDecimalFormatEuros = DecimalFormatUtils.decimalFormatEuros();
 
     private BookListMVP.RequiredViewOperations mView;
     private BookListMVP.ProvidedModelOperations mModel;
@@ -59,9 +60,11 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
 
     @Override
     public void presentBooks(@NonNull List<Book> books) {
+        BookToBookVOMapper mapper = new BookToBookVOMapper(mDecimalFormatEuros, false);
+
         List<BookVO> bookVOs = new ArrayList<>();
         for (Book book : books) {
-            bookVOs.add(convertBookToBookVO(book));
+            bookVOs.add(mapper.map(book));
         }
 
         mView.showBooks(bookVOs);
@@ -75,21 +78,5 @@ public class BookListPresenter implements BookListMVP.ProvidedPresenterOperation
     @Override
     public void presentNoBook() {
         mView.showNoBook();
-    }
-
-    /**
-     * Converts a {@link Book} into a {@link BookVO}.
-     * @param book the book to convert.
-     * @return The resulting {@link BookVO}.
-     */
-    @NonNull
-    private BookVO convertBookToBookVO(@NonNull Book book) {
-        return new BookVO(
-                book.getIsbn(),
-                book.getTitle(),
-                mDecimalFormat.format(book.getPrice()),
-                book.getCover(),
-                false
-        );
     }
 }

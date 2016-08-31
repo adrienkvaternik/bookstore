@@ -8,6 +8,7 @@ import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.model.entity.Offer;
+import fr.kvaternik.adrien.bookstore.model.mapper.BookToBookVOMapper;
 import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
@@ -61,9 +62,11 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
 
     @Override
     public void presentCart(@NonNull List<Book> books, double totalPrice) {
+        BookToBookVOMapper mapper = new BookToBookVOMapper(mDecimalFormatEuros, true);
+
         List<BookVO> bookVOs = new ArrayList<>();
         for (Book book : books) {
-            bookVOs.add(convertBookToBookVO(book));
+            bookVOs.add(mapper.map(book));
         }
 
         mView.showCart(new CartVO(bookVOs, mDecimalFormatEuros.format(totalPrice)));
@@ -104,21 +107,5 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     @Override
     public void presentOfferError() {
         mView.showError();
-    }
-
-    /**
-     * Converts a {@link Book} into a {@link BookVO}.
-     * @param book the book to convert.
-     * @return The resulting {@link BookVO}.
-     */
-    @NonNull
-    private BookVO convertBookToBookVO(@NonNull Book book) {
-        return new BookVO(
-                book.getIsbn(),
-                book.getTitle(),
-                mDecimalFormatEuros.format(book.getPrice()),
-                book.getCover(),
-                true
-        );
     }
 }
