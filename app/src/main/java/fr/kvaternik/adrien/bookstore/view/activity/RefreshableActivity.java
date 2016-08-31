@@ -33,4 +33,38 @@ public abstract class RefreshableActivity extends BaseActivity {
             }
         });
     }
+
+    /**
+     * Shows the refresh indicator.
+     */
+    protected void showRefreshIndicator() {
+        setRefreshIndicatorVisible(true);
+    }
+
+    /**
+     * Hides the refresh indicator.
+     */
+    protected void hideRefreshIndicator() {
+        setRefreshIndicatorVisible(false);
+    }
+
+    /**
+     * Disables the refresh indicator.
+     */
+    protected void disableRefreshIndicator() {
+        mSwipeRefreshLayout.setEnabled(false);
+    }
+
+    /**
+     * Sets the visibility of the refresh indicator.
+     * @param visible <code>true</code> if visible, <code>false</code> otherwise
+     */
+    private void setRefreshIndicatorVisible(final boolean visible) {
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(visible);
+            }
+        });
+    }
 }

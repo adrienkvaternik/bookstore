@@ -109,13 +109,13 @@ public class CartActivity extends RefreshableActivity implements CartMVP.Require
 
     @Override
     public void showEmptyCart() {
-        mSwipeRefreshLayout.setEnabled(false);
+        disableRefreshIndicator();
         displayEmptyCartView();
     }
 
     @Override
     public void showOffer(@NonNull OfferVO offerVO) {
-        mSwipeRefreshLayout.setRefreshing(false);
+        hideRefreshIndicator();
         displayOfferLayout();
         mOfferValueTextView.setText(offerVO.getOfferValue());
         mReducedPriceTextView.setText(offerVO.getReducedPrice());
@@ -123,13 +123,13 @@ public class CartActivity extends RefreshableActivity implements CartMVP.Require
 
     @Override
     public void showNoOffer() {
-        mSwipeRefreshLayout.setRefreshing(false);
+        hideRefreshIndicator();
         hideOfferLayout();
     }
 
     @Override
     public void showError() {
-        mSwipeRefreshLayout.setRefreshing(false);
+        hideRefreshIndicator();
         new AlertDialog.Builder(this)
                 .setTitle(R.string.error_title)
                 .setMessage(R.string.error_message_offer)
@@ -154,12 +154,7 @@ public class CartActivity extends RefreshableActivity implements CartMVP.Require
      * Requests the best offer.
      */
     private void requestBestOffer() {
-        mSwipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-            }
-        });
+        showRefreshIndicator();
         mPresenter.requestBestOffer();
     }
 

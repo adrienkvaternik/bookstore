@@ -104,21 +104,21 @@ public class BookListActivity extends RefreshableActivity implements BookListMVP
 
     @Override
     public void showBooks(@NonNull List<BookVO> bookVOs) {
-        mSwipeRefreshLayout.setRefreshing(false);
+        hideRefreshIndicator();
         displayBookListLayout();
         mAdapter.updateData(bookVOs);
     }
 
     @Override
     public void showNoBook() {
-        mSwipeRefreshLayout.setRefreshing(false);
+        hideRefreshIndicator();
         displayNoBookLayout();
         mAdapter.updateData(new ArrayList<BookVO>());
     }
 
     @Override
     public void showError() {
-        mSwipeRefreshLayout.setRefreshing(false);
+        hideRefreshIndicator();
         new AlertDialog.Builder(this)
                 .setTitle(R.string.error_title)
                 .setMessage(R.string.error_message_books)
@@ -153,12 +153,7 @@ public class BookListActivity extends RefreshableActivity implements BookListMVP
      * Requests the books.
      */
     private void requestBooks() {
-        mSwipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-            }
-        });
+        showRefreshIndicator();
         mPresenter.requestBooks();
     }
 
