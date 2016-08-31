@@ -16,7 +16,6 @@ import java.util.List;
 import butterknife.BindView;
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.mvpconfigurator.BookListMVPConfigurator;
-import fr.kvaternik.adrien.bookstore.mvpcontract.AttachmentMVP;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.router.BookListRouter;
