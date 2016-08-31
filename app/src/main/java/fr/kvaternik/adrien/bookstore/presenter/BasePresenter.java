@@ -4,6 +4,8 @@ import fr.kvaternik.adrien.bookstore.mvpcontract.AttachmentMVP;
 
 /**
  * The base class for the presenters.
+ * @param <V> the view type
+ * @param <M> the model type
  */
 public abstract class BasePresenter<V,M> implements AttachmentMVP.Presenter<V,M> {
 

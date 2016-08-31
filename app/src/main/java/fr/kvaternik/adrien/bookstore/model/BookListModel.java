@@ -13,15 +13,17 @@ import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 /**
  * The model for the book list.
  */
-public class BookListModel implements BookListMVP.ProvidedModelOperations {
+public class BookListModel extends BaseModel<BookListMVP.RequiredPresenterOperations> implements BookListMVP.ProvidedModelOperations {
 
-    private BookListMVP.RequiredPresenterOperations mPresenter;
     private BookServiceContract mService;
     private BookRepository mRepository;
 
-    @Override
-    public void attachPresenter(BookListMVP.RequiredPresenterOperations presenter) {
-        mPresenter = presenter;
+    public void setService(BookServiceContract service) {
+        mService = service;
+    }
+
+    public void setRepository(BookRepository repository) {
+        mRepository = repository;
     }
 
     @Override
@@ -52,13 +54,5 @@ public class BookListModel implements BookListMVP.ProvidedModelOperations {
     @Override
     public void removeBookFromCart(String isbn) {
         mRepository.removeBookFromCart(isbn);
-    }
-
-    public void setService(BookServiceContract service) {
-        mService = service;
-    }
-
-    public void setRepository(BookRepository repository) {
-        mRepository = repository;
     }
 }

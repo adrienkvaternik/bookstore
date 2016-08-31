@@ -16,9 +16,8 @@ import fr.kvaternik.adrien.bookstore.mvpcontract.CartMVP;
 /**
  * CThe model for the book list.
  */
-public class CartModel implements CartMVP.ProvidedModelOperations {
+public class CartModel extends BaseModel<CartMVP.RequiredPresenterOperations> implements CartMVP.ProvidedModelOperations {
 
-    private CartMVP.RequiredPresenterOperations mPresenter;
     private CartRepository mRepository;
     private OfferServiceContract mService;
     private OfferOptimizerContract mOfferOptimizer;
@@ -33,11 +32,6 @@ public class CartModel implements CartMVP.ProvidedModelOperations {
 
     public void setOfferOptimizer(OfferOptimizerContract offerOptimizer) {
         mOfferOptimizer = offerOptimizer;
-    }
-
-    @Override
-    public void attachPresenter(CartMVP.RequiredPresenterOperations presenter) {
-        mPresenter = presenter;
     }
 
     @Override
