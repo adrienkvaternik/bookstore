@@ -1,49 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activity.CartActivity">
 
-    <LinearLayout
-        android:id="@+id/cart_layout"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/cart_recylerview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+        tools:context=".view.activity.CartActivity">
 
         <LinearLayout
+            android:id="@+id/cart_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-            <RelativeLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cart_recylerview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total"/>
-
-                <TextView
-                    android:id="@+id/total_price_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    tools:text="100,00 €"/>
-
-            </RelativeLayout>
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
             <LinearLayout
-                android:id="@+id/offer_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -55,49 +37,82 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/discount"/>
+                        android:text="@string/total"/>
 
                     <TextView
-                        android:id="@+id/offer_value_textview"
+                        android:id="@+id/total_price_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
-                        tools:text="-20,00 €"/>
+                        tools:text="100,00 €"/>
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <LinearLayout
+                    android:id="@+id/offer_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/total_after_discount"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/reduced_price_textview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        tools:text="80,00 €"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/discount"/>
 
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/offer_value_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            tools:text="-20,00 €"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_after_discount"/>
+
+                        <TextView
+                            android:id="@+id/reduced_price_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            tools:text="80,00 €"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <ScrollView
+            android:id="@+id/empty_cart_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
-    <TextView
-        android:id="@+id/empty_cart_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/empty_cart"
-        android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/empty_cart"/>
 
-</FrameLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

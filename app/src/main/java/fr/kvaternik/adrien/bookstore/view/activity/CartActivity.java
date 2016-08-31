@@ -3,6 +3,7 @@ package fr.kvaternik.adrien.bookstore.view.activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,9 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     private CartMVP.ProvidedPresenterOperations mPresenter;
     private CartAdapter mAdapter;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     @BindView(R.id.cart_layout)
     View mCartLayout;
 
@@ -54,6 +58,16 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // setup swipe refresh layout
+        mSwipeRefreshLayout.setEnabled(true);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestBestOffer();
+            }
+        });
+
         // display empty cart view
         displayEmptyCartView();
 
@@ -75,7 +89,7 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
         mPresenter.requestCart();
 
         // request the best offer
-        mPresenter.requestBestOffer();
+        requestBestOffer();
     }
 
     @Override
@@ -104,11 +118,13 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
 
     @Override
     public void showEmptyCart() {
+        mSwipeRefreshLayout.setEnabled(false);
         displayEmptyCartView();
     }
 
     @Override
     public void showOffer(@NonNull OfferVO offerVO) {
+        mSwipeRefreshLayout.setRefreshing(false);
         displayOfferLayout();
         mOfferValueTextView.setText(offerVO.getOfferValue());
         mReducedPriceTextView.setText(offerVO.getReducedPrice());
@@ -116,11 +132,13 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
 
     @Override
     public void showNoOffer() {
+        mSwipeRefreshLayout.setRefreshing(false);
         hideOfferLayout();
     }
 
     @Override
     public void showError() {
+        mSwipeRefreshLayout.setRefreshing(false);
         new AlertDialog.Builder(this)
                 .setTitle(R.string.error_title)
                 .setMessage(R.string.error_message_offer)
@@ -128,7 +146,7 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // User accepts retry
-                        mPresenter.requestBestOffer();
+                        requestBestOffer();
                     }
                 })
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -139,6 +157,14 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
                 })
                 .create()
                 .show();
+    }
+
+    /**
+     * Requests the best offer.
+     */
+    private void requestBestOffer() {
+        mSwipeRefreshLayout.setRefreshing(true);
+        mPresenter.requestBestOffer();
     }
 
     /**
