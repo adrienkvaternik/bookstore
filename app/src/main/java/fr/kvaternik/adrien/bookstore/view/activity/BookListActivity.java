@@ -3,6 +3,7 @@ package fr.kvaternik.adrien.bookstore.view.activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +34,9 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     private BookListAdapter mAdapter;
     private BookListRouterContract mRouter;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     @BindView(R.id.no_book_view)
     View mNoBookView;
 
@@ -42,6 +46,16 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // setup swipe refresh layout
+        mSwipeRefreshLayout.setEnabled(true);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestBooks();
+            }
+        });
 
         // display no book layout
         displayNoBookLayout();
@@ -61,7 +75,7 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
         mRouter = new BookListRouter();
 
         // request books to presenter
-        mPresenter.requestBooks();
+        requestBooks();
     }
 
     @Override
@@ -99,18 +113,21 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
 
     @Override
     public void showBooks(@NonNull List<BookVO> bookVOs) {
+        mSwipeRefreshLayout.setRefreshing(false);
         displayBookListLayout();
         mAdapter.updateData(bookVOs);
     }
 
     @Override
     public void showNoBook() {
+        mSwipeRefreshLayout.setRefreshing(false);
         displayNoBookLayout();
         mAdapter.updateData(new ArrayList<BookVO>());
     }
 
     @Override
     public void showError() {
+        mSwipeRefreshLayout.setRefreshing(false);
         new AlertDialog.Builder(this)
                 .setTitle(R.string.error_title)
                 .setMessage(R.string.error_message_books)
@@ -118,7 +135,7 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // User accepts retry
-                        mPresenter.requestBooks();
+                        requestBooks();
                     }
                 })
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -139,6 +156,14 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     @Override
     public void onBookRemovedFromCart(String isbn) {
         mPresenter.onBookRemovedFromCart(isbn);
+    }
+
+    /**
+     * Requests the books.
+     */
+    private void requestBooks() {
+        mSwipeRefreshLayout.setRefreshing(true);
+        mPresenter.requestBooks();
     }
 
     /**
