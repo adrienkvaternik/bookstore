@@ -18,7 +18,7 @@ import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
 /**
  * The presenter for the cart.
  */
-public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartMVP.RequiredPresenterOperations {
+public class CartPresenter extends BasePresenter<CartMVP.RequiredViewOperations, CartMVP.ProvidedModelOperations> implements CartMVP.ProvidedPresenterOperations, CartMVP.RequiredPresenterOperations {
 
     /** Decimal formatter with 2 decimals, in euros */
     private DecimalFormat mDecimalFormatEuros = DecimalFormatUtils.decimalFormatEuros();
@@ -26,29 +26,6 @@ public class CartPresenter implements CartMVP.ProvidedPresenterOperations, CartM
     private DecimalFormat mDecimalFormatEurosReduction = DecimalFormatUtils.decimalFormatEurosReduction();
     /** Decimal formatter with 2 decimals, in percent reduction */
     private DecimalFormat mDecimalFormatPercentReduction = DecimalFormatUtils.decimalFormatPercentReduction();
-
-    private CartMVP.RequiredViewOperations mView;
-    private CartMVP.ProvidedModelOperations mModel;
-
-    @Override
-    public void attachView(CartMVP.RequiredViewOperations view) {
-        mView = view;
-    }
-
-    @Override
-    public void detachView() {
-        mView = null;
-    }
-
-    @Override
-    public void attachModel(CartMVP.ProvidedModelOperations model) {
-        mModel = model;
-    }
-
-    @Override
-    public void detachModel() {
-        mModel = null;
-    }
 
     @Override
     public void requestCart() {

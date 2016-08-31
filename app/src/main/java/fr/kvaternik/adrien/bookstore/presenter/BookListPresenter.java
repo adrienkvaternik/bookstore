@@ -15,33 +15,10 @@ import fr.kvaternik.adrien.bookstore.utils.DecimalFormatUtils;
 /**
  * The presenter for the book list.
  */
-public class BookListPresenter implements BookListMVP.ProvidedPresenterOperations, BookListMVP.RequiredPresenterOperations {
+public class BookListPresenter extends BasePresenter<BookListMVP.RequiredViewOperations, BookListMVP.ProvidedModelOperations> implements BookListMVP.ProvidedPresenterOperations, BookListMVP.RequiredPresenterOperations {
 
     /** Decimal formatter with 2 decimals, in euros */
     private DecimalFormat mDecimalFormatEuros = DecimalFormatUtils.decimalFormatEuros();
-
-    private BookListMVP.RequiredViewOperations mView;
-    private BookListMVP.ProvidedModelOperations mModel;
-
-    @Override
-    public void attachView(BookListMVP.RequiredViewOperations view) {
-        mView = view;
-    }
-
-    @Override
-    public void detachView() {
-        mView = null;
-    }
-
-    @Override
-    public void attachModel(BookListMVP.ProvidedModelOperations model) {
-        mModel = model;
-    }
-
-    @Override
-    public void detachModel() {
-        mModel = null;
-    }
 
     @Override
     public void requestBooks() {
