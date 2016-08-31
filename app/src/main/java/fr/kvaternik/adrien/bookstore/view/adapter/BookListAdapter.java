@@ -12,12 +12,12 @@ import java.util.List;
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.view.listener.OnBookAddedToCartChangeListener;
-import fr.kvaternik.adrien.bookstore.view.viewholder.BookListViewHolder;
+import fr.kvaternik.adrien.bookstore.view.viewholder.SelectableBookViewHolder;
 
 /**
  * The adapter used to display the book list.
  */
-public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder> {
+public class BookListAdapter extends RecyclerView.Adapter<SelectableBookViewHolder> {
 
     private List<BookVO> mBookVOs = new ArrayList<>();
     private OnBookAddedToCartChangeListener mListener;
@@ -28,13 +28,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder> {
     }
 
     @Override
-    public BookListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SelectableBookViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book_list, parent, false);
-        return new BookListViewHolder(view, mListener);
+        return new SelectableBookViewHolder(view, mListener);
     }
 
     @Override
-    public void onBindViewHolder(BookListViewHolder holder, int position) {
+    public void onBindViewHolder(SelectableBookViewHolder holder, int position) {
         BookVO bookVO = mBookVOs.get(position);
         holder.bindVO(bookVO);
     }

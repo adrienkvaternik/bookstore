@@ -10,12 +10,12 @@ import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
-import fr.kvaternik.adrien.bookstore.view.viewholder.CartViewHolder;
+import fr.kvaternik.adrien.bookstore.view.viewholder.BookViewHolder;
 
 /**
  * The adapter used to display the cart.
  */
-public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
+public class CartAdapter extends RecyclerView.Adapter<BookViewHolder> {
 
     private List<BookVO> mBookVOs;
 
@@ -24,13 +24,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
     }
 
     @Override
-    public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BookViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart, parent, false);
-        return new CartViewHolder(view);
+        return new BookViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CartViewHolder holder, int position) {
+    public void onBindViewHolder(BookViewHolder holder, int position) {
         BookVO bookVO = mBookVOs.get(position);
         holder.bindVO(bookVO);
     }

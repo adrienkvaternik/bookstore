@@ -13,9 +13,9 @@ import fr.kvaternik.adrien.bookstore.R;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 
 /**
- * The view holder for the cart.
+ * A view holder that binds {@link BookVO} to display a book.
  */
-public class CartViewHolder extends BaseViewHolder {
+public class BookViewHolder extends BaseViewHolder<BookVO> {
 
     @BindView(R.id.title_textview)
     TextView mTitleTextView;
@@ -26,15 +26,12 @@ public class CartViewHolder extends BaseViewHolder {
     @BindView(R.id.cover_imageview)
     ImageView mCoverImageView;
 
-    public CartViewHolder(View itemView) {
+    public BookViewHolder(View itemView) {
         super(itemView);
     }
 
-    /**
-     * Binds the book VO to the view.
-     * @param bookVO the book VO
-     */
-    public void bindVO(@NonNull BookVO bookVO) {
+    @Override
+    public void bindVO(@NonNull final BookVO bookVO) {
         mTitleTextView.setText(bookVO.getTitle());
         mPriceTextView.setText(bookVO.getPrice());
         Picasso.with(itemView.getContext())
