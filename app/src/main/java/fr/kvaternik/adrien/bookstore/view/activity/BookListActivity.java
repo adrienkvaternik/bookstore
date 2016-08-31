@@ -3,7 +3,6 @@ package fr.kvaternik.adrien.bookstore.view.activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,15 +26,12 @@ import fr.kvaternik.adrien.bookstore.view.listener.OnBookAddedToCartChangeListen
 /**
  * The book list activity.
  */
-public class BookListActivity extends BaseActivity implements BookListMVP.RequiredViewOperations, OnBookAddedToCartChangeListener {
+public class BookListActivity extends RefreshableActivity implements BookListMVP.RequiredViewOperations, OnBookAddedToCartChangeListener {
 
     private BookListMVPConfigurator mConfigurator;
     private BookListMVP.ProvidedPresenterOperations mPresenter;
     private BookListAdapter mAdapter;
     private BookListRouterContract mRouter;
-
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @BindView(R.id.no_book_view)
     View mNoBookView;
@@ -46,16 +42,6 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // setup swipe refresh layout
-        mSwipeRefreshLayout.setEnabled(true);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                requestBooks();
-            }
-        });
 
         // display no book layout
         displayNoBookLayout();
@@ -104,6 +90,11 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
     @Override
     protected int getContentViewId() {
         return R.layout.activity_book_list;
+    }
+
+    @Override
+    protected void onSwipeRefresh() {
+        requestBooks();
     }
 
     @Override
@@ -162,7 +153,12 @@ public class BookListActivity extends BaseActivity implements BookListMVP.Requir
      * Requests the books.
      */
     private void requestBooks() {
-        mSwipeRefreshLayout.setRefreshing(true);
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+        });
         mPresenter.requestBooks();
     }
 

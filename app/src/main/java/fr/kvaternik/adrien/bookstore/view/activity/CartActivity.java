@@ -3,7 +3,6 @@ package fr.kvaternik.adrien.bookstore.view.activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,14 +23,11 @@ import fr.kvaternik.adrien.bookstore.view.adapter.CartAdapter;
 /**
  * The cart activity.
  */
-public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOperations {
+public class CartActivity extends RefreshableActivity implements CartMVP.RequiredViewOperations {
 
     private CartMVPConfigurator mConfigurator;
     private CartMVP.ProvidedPresenterOperations mPresenter;
     private CartAdapter mAdapter;
-
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @BindView(R.id.cart_layout)
     View mCartLayout;
@@ -58,16 +54,6 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // setup swipe refresh layout
-        mSwipeRefreshLayout.setEnabled(true);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                requestBestOffer();
-            }
-        });
-
         // display empty cart view
         displayEmptyCartView();
 
@@ -87,9 +73,6 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
 
         // request the cart information
         mPresenter.requestCart();
-
-        // request the best offer
-        requestBestOffer();
     }
 
     @Override
@@ -105,6 +88,11 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
     }
 
     @Override
+    protected void onSwipeRefresh() {
+        requestBestOffer();
+    }
+
+    @Override
     public void attachPresenter(CartMVP.ProvidedPresenterOperations presenter) {
         mPresenter = presenter;
     }
@@ -114,6 +102,9 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
         displayCartLayout();
         mAdapter.updateData(cartVO.getBookVOs());
         mTotalPriceTextView.setText(cartVO.getTotalPrice());
+
+        // request the best offer
+        requestBestOffer();
     }
 
     @Override
@@ -163,7 +154,12 @@ public class CartActivity extends BaseActivity implements CartMVP.RequiredViewOp
      * Requests the best offer.
      */
     private void requestBestOffer() {
-        mSwipeRefreshLayout.setRefreshing(true);
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+        });
         mPresenter.requestBestOffer();
     }
 
