@@ -25,4 +25,7 @@
     <string name="total_after_discount">Total après remise :</string>
     <string name="empty_cart">Le panier est vide.</string>
 
+    <!-- Content description -->
+    <string name="book_cover_desc">The book cover</string>
+
 </resources>
