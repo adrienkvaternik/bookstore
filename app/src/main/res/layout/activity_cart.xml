@@ -23,23 +23,28 @@
                 android:id="@+id/cart_recylerview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:overScrollMode="never"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:background="@color/colorPrimary">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
+                        style="@style/WhiteTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/total"/>
 
                     <TextView
+                        style="@style/WhiteTextView"
                         android:id="@+id/total_price_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -60,11 +65,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            style="@style/WhiteTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/discount"/>
 
                         <TextView
+                            style="@style/WhiteTextView"
                             android:id="@+id/offer_value_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -79,11 +86,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            style="@style/WhiteTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/total_after_discount"/>
 
                         <TextView
+                            style="@style/WhiteTextView"
                             android:id="@+id/reduced_price_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
