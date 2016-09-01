@@ -11,6 +11,10 @@ public abstract class Offer {
 
     protected double value;
 
+    public Offer(double value) {
+        this.value = value;
+    }
+
     /**
      * Provides the price after the offer application on the specified total price.
      * @param totalPrice the total price.
@@ -23,10 +27,6 @@ public abstract class Offer {
      * @return The offer unit.
      */
     public abstract int getUnit();
-
-    public Offer(double value) {
-        this.value = value;
-    }
 
     public double getValue() {
         return value;
