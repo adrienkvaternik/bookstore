@@ -11,6 +11,10 @@ import java.util.Locale;
  */
 public class DecimalFormatUtils {
 
+    private static final String PATTERN_EUROS = "#.00 €";
+    private static final String PATTERN_EUROS_REDUCTION = "-#.00 €";
+    private static final String PATTERN_PERCENT_REDUCTION = "-#.00 %";
+
     private DecimalFormatUtils() {}
 
     /**
@@ -19,8 +23,7 @@ public class DecimalFormatUtils {
      */
     @NonNull
     public static DecimalFormat decimalFormatEuros() {
-        DecimalFormatSymbols symbols = getDefaultDecimalFormatSymbols();
-        return new DecimalFormat("#.00 €", symbols);
+        return getDecimalFormatWithPattern(PATTERN_EUROS);
     }
 
     /**
@@ -29,8 +32,7 @@ public class DecimalFormatUtils {
      */
     @NonNull
     public static DecimalFormat decimalFormatEurosReduction() {
-        DecimalFormatSymbols symbols = getDefaultDecimalFormatSymbols();
-        return new DecimalFormat("-#.00 €", symbols);
+        return getDecimalFormatWithPattern(PATTERN_EUROS_REDUCTION);
     }
 
     /**
@@ -39,8 +41,7 @@ public class DecimalFormatUtils {
      */
     @NonNull
     public static DecimalFormat decimalFormatPercentReduction() {
-        DecimalFormatSymbols symbols = getDefaultDecimalFormatSymbols();
-        return new DecimalFormat("-#.00 %", symbols);
+        return getDecimalFormatWithPattern(PATTERN_PERCENT_REDUCTION);
     }
 
     /**
@@ -53,5 +54,15 @@ public class DecimalFormatUtils {
         symbols.setDecimalSeparator(',');
         symbols.setGroupingSeparator(' ');
         return symbols;
+    }
+
+    /**
+     * Provides the {@link DecimalFormat} with the specified pattern.
+     * @param pattern the pattern
+     * @return The {@link DecimalFormat}.
+     */
+    private static DecimalFormat getDecimalFormatWithPattern(@NonNull String pattern) {
+        DecimalFormatSymbols symbols = getDefaultDecimalFormatSymbols();
+        return new DecimalFormat(pattern, symbols);
     }
 }
