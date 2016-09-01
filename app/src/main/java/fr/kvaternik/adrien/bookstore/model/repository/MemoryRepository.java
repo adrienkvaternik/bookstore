@@ -10,7 +10,7 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
 /**
  * The memory repository. Keeps the books, can add/remove them from the cart and provides the cart.
  */
-public class MemoryRepository implements BookRepository, CartRepository {
+public final class MemoryRepository implements BookRepository, CartRepository {
 
     private List<Book> mBooks = new ArrayList<>();
     private List<Book> mCart = new ArrayList<>();

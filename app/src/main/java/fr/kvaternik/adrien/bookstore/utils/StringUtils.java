@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * The utility class for {@link String}.
  */
-public class StringUtils {
+public final class StringUtils {
 
     private StringUtils() {}
 

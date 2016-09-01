@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * The utility class for {@link java.text.DecimalFormat}.
  */
-public class DecimalFormatUtils {
+public final class DecimalFormatUtils {
 
     private static final String PATTERN_EUROS = "#.00 €";
     private static final String PATTERN_EUROS_REDUCTION = "-#.00 €";

@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * The Retrofit API provider. Provides the API using Retrofit.
  */
-public class RetrofitAPIProvider implements BookAPIProvider, OfferAPIProvider {
+public final class RetrofitAPIProvider implements BookAPIProvider, OfferAPIProvider {
 
     public static final String RETROFIT_BASE_URL = "http://henri-potier.xebia.fr/";
 
