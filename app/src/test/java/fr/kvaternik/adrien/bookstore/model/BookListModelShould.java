@@ -17,7 +17,10 @@ import fr.kvaternik.adrien.bookstore.model.service.BookServiceContract;
 import fr.kvaternik.adrien.bookstore.model.service.callback.Callback;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.isA;
+import static org.mockito.Mockito.verify;
 
 /**
  * Tests for {@link BookListModel}.

@@ -7,7 +7,7 @@ import java.util.List;
 
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for {@link BookListAdapter}.

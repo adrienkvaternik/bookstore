@@ -13,7 +13,8 @@ import fr.kvaternik.adrien.bookstore.model.entity.Book;
 import fr.kvaternik.adrien.bookstore.mvpcontract.BookListMVP;
 import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.verify;
 
 /**
  * Tests for {@link BookListPresenter}.

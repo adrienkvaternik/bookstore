@@ -2,7 +2,7 @@ package fr.kvaternik.adrien.bookstore.utils;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for {@link DecimalFormatUtils}.

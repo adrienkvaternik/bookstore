@@ -17,7 +17,8 @@ import fr.kvaternik.adrien.bookstore.presenter.VO.BookVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.CartVO;
 import fr.kvaternik.adrien.bookstore.presenter.VO.OfferVO;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.verify;
 
 /**
  * Tests for {@link BookListPresenter}.

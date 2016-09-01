@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 import fr.kvaternik.adrien.bookstore.model.entity.Book;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for {@link MemoryRepository}.

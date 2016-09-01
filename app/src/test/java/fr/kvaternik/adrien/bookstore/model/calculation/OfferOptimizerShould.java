@@ -10,7 +10,8 @@ import fr.kvaternik.adrien.bookstore.model.entity.Offer;
 import fr.kvaternik.adrien.bookstore.model.entity.PercentageOffer;
 import fr.kvaternik.adrien.bookstore.model.entity.SliceOffer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests for {@link OfferOptimizer}.
